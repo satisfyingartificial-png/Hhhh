@@ -56,6 +56,13 @@ class GameUI {
             'mining': 'mining-view',
             'foraging': 'foraging-view',
             'fishing': 'fishing-view',
+            // Crafting Skills
+            'weaponsmithing': 'weaponsmithing-view',
+            'armorsmithing': 'armorsmithing-view',
+            'scribing': 'scribing-view',
+            'alchemy': 'alchemy-view',
+            'tailoring': 'tailoring-view',
+            'cooking': 'cooking-view',
             // Add more view mappings as needed
         };
 

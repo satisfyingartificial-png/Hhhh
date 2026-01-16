@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/combat.css">
     <link rel="stylesheet" href="css/tabs.css">
     <link rel="stylesheet" href="css/gathering.css">
+    <link rel="stylesheet" href="css/crafting.css">
 </head>
 <body>
     <!-- Top Bar -->
@@ -1602,6 +1603,980 @@
                                 <div class="stat-box">
                                     <span class="stat-number">28m</span>
                                     <span class="stat-name">Time Spent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weaponsmithing View -->
+            <div id="weaponsmithing-view" class="view-container">
+                <div class="view-header">
+                    <h2>WEAPONSMITHING</h2>
+                    <div class="skill-progress-header">
+                        <span class="skill-level-display">Level 30 (22,100 / 32,000 XP)</span>
+                    </div>
+                </div>
+                <div class="view-content crafting-layout">
+                    <!-- BACKEND: Populate from /api/crafting/weaponsmithing/recipes -->
+                    <div class="crafting-left-panel">
+                        <div class="recipe-list" data-backend-source="weaponsmithing-recipes">
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Tier 1 (Lv.1-10)</div>
+                                <div class="recipe-item craftable" data-backend-action="select-recipe" data-recipe-id="bronze-sword">
+                                    <span class="recipe-icon">⚔️</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Bronze Sword</span>
+                                        <span class="recipe-materials">🪨 Copper x5 | 🪵 Wood x2</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.5</span>
+                                </div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="bronze-axe">
+                                    <span class="recipe-icon">🪓</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Bronze Axe</span>
+                                        <span class="recipe-materials">🪨 Copper x6 | 🪵 Wood x3</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.8</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Tier 2 (Lv.10-25)</div>
+                                <div class="recipe-item selected" data-backend-action="select-recipe" data-recipe-id="iron-sword">
+                                    <span class="recipe-icon">⚔️</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Iron Sword</span>
+                                        <span class="recipe-materials">⛏️ Iron x8 | 🪵 Oak x3</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.15</span>
+                                </div>
+                                <div class="recipe-item craftable" data-backend-action="select-recipe" data-recipe-id="iron-bow">
+                                    <span class="recipe-icon">🏹</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Iron Bow</span>
+                                        <span class="recipe-materials">⛏️ Iron x5 | 🪵 Oak x6</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.20</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Tier 3 (Lv.25-45)</div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="steel-sword">
+                                    <span class="recipe-icon">⚔️</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Steel Sword</span>
+                                        <span class="recipe-materials">🪙 Silver x10 | 🪵 Maple x5</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.35</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="crafting-right-panel">
+                        <div class="recipe-display-card" data-backend-source="selected-recipe">
+                            <div class="recipe-display-header">
+                                <div class="recipe-display-icon">⚔️</div>
+                                <div class="recipe-display-info">
+                                    <h3>Iron Sword</h3>
+                                    <span class="recipe-requirement">Required Level: 15</span>
+                                    <div class="item-stats-preview">
+                                        <span class="item-stat">⚔️ Attack: 45-60</span>
+                                        <span class="item-stat">💪 STR: +8</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="materials-required-section">
+                                <h4>Materials Required</h4>
+                                <div class="materials-list">
+                                    <div class="material-item has-materials">
+                                        <span class="material-icon">⛏️</span>
+                                        <span class="material-name">Iron Bar</span>
+                                        <span class="material-count">8 / 8</span>
+                                    </div>
+                                    <div class="material-item has-materials">
+                                        <span class="material-icon">🪵</span>
+                                        <span class="material-name">Oak Wood</span>
+                                        <span class="material-count">3 / 3</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="recipe-details-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">⭐ Experience:</span>
+                                    <span class="detail-value">200 XP</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">✅ Success Rate:</span>
+                                    <span class="detail-value">95%</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">⏱️ Craft Time:</span>
+                                    <span class="detail-value">8.0s</span>
+                                </div>
+                            </div>
+
+                            <div class="crafting-progress-section" style="display: none;" data-ws-event="crafting-progress">
+                                <div class="progress-label">Crafting...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                                <div class="batch-progress">Item 1 of 10</div>
+                            </div>
+
+                            <div class="craft-actions">
+                                <button class="btn-primary btn-large" data-backend-action="craft-item" data-recipe-id="iron-sword" data-quantity="1">
+                                    🔨 Craft 1
+                                </button>
+                                <button class="btn-secondary btn-large" data-backend-action="craft-item" data-recipe-id="iron-sword" data-quantity="10">
+                                    🔨 Craft 10
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="recent-crafts-section">
+                            <h4>Recent Crafts</h4>
+                            <div class="crafts-list" data-backend-source="recent-crafts">
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">⚔️</span>
+                                    <span class="craft-name">Iron Sword</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+200 XP</span>
+                                </div>
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">🏹</span>
+                                    <span class="craft-name">Iron Bow</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+180 XP</span>
+                                </div>
+                                <div class="craft-result-item failure">
+                                    <span class="craft-icon">🪓</span>
+                                    <span class="craft-name">Bronze Axe</span>
+                                    <span class="craft-status">❌ Failed</span>
+                                    <span class="craft-xp">+50 XP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="session-stats-section">
+                            <h4>Session Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-number">48</span>
+                                    <span class="stat-name">Items Crafted</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">8.5K</span>
+                                    <span class="stat-name">XP/Hour</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">92%</span>
+                                    <span class="stat-name">Success Rate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Armorsmithing View -->
+            <div id="armorsmithing-view" class="view-container">
+                <div class="view-header">
+                    <h2>ARMORSMITHING</h2>
+                    <div class="skill-progress-header">
+                        <span class="skill-level-display">Level 33 (25,450 / 35,000 XP)</span>
+                    </div>
+                </div>
+                <div class="view-content crafting-layout">
+                    <div class="crafting-left-panel">
+                        <div class="recipe-list" data-backend-source="armorsmithing-recipes">
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Tier 1 (Lv.1-10)</div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="bronze-helmet">
+                                    <span class="recipe-icon">🪖</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Bronze Helmet</span>
+                                        <span class="recipe-materials">🪨 Copper x4</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.3</span>
+                                </div>
+                                <div class="recipe-item craftable" data-backend-action="select-recipe" data-recipe-id="bronze-chest">
+                                    <span class="recipe-icon">🛡️</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Bronze Chestplate</span>
+                                        <span class="recipe-materials">🪨 Copper x8</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.7</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Tier 2 (Lv.10-25)</div>
+                                <div class="recipe-item selected craftable" data-backend-action="select-recipe" data-recipe-id="iron-chest">
+                                    <span class="recipe-icon">🛡️</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Iron Chestplate</span>
+                                        <span class="recipe-materials">⛏️ Iron x12</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.18</span>
+                                </div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="iron-shield">
+                                    <span class="recipe-icon">🛡️</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Iron Shield</span>
+                                        <span class="recipe-materials">⛏️ Iron x10</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.22</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Tier 3 (Lv.25-45)</div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="steel-armor-set">
+                                    <span class="recipe-icon">🛡️</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Steel Armor Set</span>
+                                        <span class="recipe-materials">🪙 Silver x30</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.38</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="crafting-right-panel">
+                        <div class="recipe-display-card" data-backend-source="selected-recipe">
+                            <div class="recipe-display-header">
+                                <div class="recipe-display-icon">🛡️</div>
+                                <div class="recipe-display-info">
+                                    <h3>Iron Chestplate</h3>
+                                    <span class="recipe-requirement">Required Level: 18</span>
+                                    <div class="item-stats-preview">
+                                        <span class="item-stat">🛡️ Defense: 35</span>
+                                        <span class="item-stat">💪 STA: +12</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="materials-required-section">
+                                <h4>Materials Required</h4>
+                                <div class="materials-list">
+                                    <div class="material-item has-materials">
+                                        <span class="material-icon">⛏️</span>
+                                        <span class="material-name">Iron Bar</span>
+                                        <span class="material-count">12 / 12</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="recipe-details-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">⭐ Experience:</span>
+                                    <span class="detail-value">220 XP</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">✅ Success Rate:</span>
+                                    <span class="detail-value">90%</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">⏱️ Craft Time:</span>
+                                    <span class="detail-value">10.0s</span>
+                                </div>
+                            </div>
+
+                            <div class="crafting-progress-section" style="display: none;" data-ws-event="crafting-progress">
+                                <div class="progress-label">Crafting...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                            </div>
+
+                            <div class="craft-actions">
+                                <button class="btn-primary btn-large" data-backend-action="craft-item" data-recipe-id="iron-chest" data-quantity="1">
+                                    🔨 Craft 1
+                                </button>
+                                <button class="btn-secondary btn-large" data-backend-action="craft-item" data-recipe-id="iron-chest" data-quantity="10">
+                                    🔨 Craft 10
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="recent-crafts-section">
+                            <h4>Recent Crafts</h4>
+                            <div class="crafts-list" data-backend-source="recent-crafts">
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">🛡️</span>
+                                    <span class="craft-name">Iron Chestplate</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+220 XP</span>
+                                </div>
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">🪖</span>
+                                    <span class="craft-name">Bronze Helmet</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+120 XP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="session-stats-section">
+                            <h4>Session Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-number">32</span>
+                                    <span class="stat-name">Items Crafted</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">7.2K</span>
+                                    <span class="stat-name">XP/Hour</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">89%</span>
+                                    <span class="stat-name">Success Rate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scribing View -->
+            <div id="scribing-view" class="view-container">
+                <div class="view-header">
+                    <h2>SCRIBING</h2>
+                    <div class="skill-progress-header">
+                        <span class="skill-level-display">Level 25 (18,300 / 27,000 XP)</span>
+                    </div>
+                </div>
+                <div class="view-content crafting-layout">
+                    <div class="crafting-left-panel">
+                        <div class="recipe-list" data-backend-source="scribing-recipes">
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Adept Tomes (Tier 2)</div>
+                                <div class="recipe-item craftable" data-backend-action="select-recipe" data-recipe-id="bash-adept">
+                                    <span class="recipe-icon">📖</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Bash II (Adept)</span>
+                                        <span class="recipe-materials">📜 Paper x3 | 🖋️ Ink x2</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.15</span>
+                                </div>
+                                <div class="recipe-item selected" data-backend-action="select-recipe" data-recipe-id="lifetap-adept">
+                                    <span class="recipe-icon">📖</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Lifetap II (Adept)</span>
+                                        <span class="recipe-materials">📜 Paper x4 | 🖋️ Ink x3 | 🧪 Reagent x1</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.20</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Expert Tomes (Tier 3)</div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="bash-expert">
+                                    <span class="recipe-icon">📘</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Bash III (Expert)</span>
+                                        <span class="recipe-materials">📜 Paper x6 | 🖋️ Ink x5 | 🧪 Reagent x2</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.35</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Master Tomes (Tier 4)</div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="bash-master">
+                                    <span class="recipe-icon">📕</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Bash IV (Master)</span>
+                                        <span class="recipe-materials">📜 Paper x10 | 🖋️ Ink x8 | 🧪 Reagent x5</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.60</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="crafting-right-panel">
+                        <div class="recipe-display-card" data-backend-source="selected-recipe">
+                            <div class="recipe-display-header">
+                                <div class="recipe-display-icon">📖</div>
+                                <div class="recipe-display-info">
+                                    <h3>Lifetap II (Adept)</h3>
+                                    <span class="recipe-requirement">Required Level: 20</span>
+                                    <div class="item-stats-preview">
+                                        <span class="item-stat">Upgrade: Apprentice → Adept</span>
+                                        <span class="item-stat">📈 +15% Damage</span>
+                                        <span class="item-stat">⏱️ -0.5s Cooldown</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="materials-required-section">
+                                <h4>Materials Required</h4>
+                                <div class="materials-list">
+                                    <div class="material-item has-materials">
+                                        <span class="material-icon">📜</span>
+                                        <span class="material-name">Paper</span>
+                                        <span class="material-count">4 / 4</span>
+                                    </div>
+                                    <div class="material-item needs-materials">
+                                        <span class="material-icon">🖋️</span>
+                                        <span class="material-name">Ink</span>
+                                        <span class="material-count">2 / 3</span>
+                                    </div>
+                                    <div class="material-item has-materials">
+                                        <span class="material-icon">🧪</span>
+                                        <span class="material-name">Rare Reagent</span>
+                                        <span class="material-count">1 / 1</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="recipe-details-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">⭐ Experience:</span>
+                                    <span class="detail-value">180 XP</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">✅ Success Rate:</span>
+                                    <span class="detail-value">85%</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">⏱️ Craft Time:</span>
+                                    <span class="detail-value">12.0s</span>
+                                </div>
+                            </div>
+
+                            <div class="crafting-progress-section" style="display: none;" data-ws-event="crafting-progress">
+                                <div class="progress-label">Scribing...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                            </div>
+
+                            <div class="craft-actions">
+                                <button class="btn-primary btn-large" data-backend-action="craft-item" data-recipe-id="lifetap-adept" data-quantity="1" disabled>
+                                    📝 Scribe Tome
+                                </button>
+                            </div>
+                            <div class="insufficient-materials-warning">
+                                <span class="warning-icon">⚠️</span>
+                                <span>Insufficient Materials</span>
+                            </div>
+                        </div>
+
+                        <div class="recent-crafts-section">
+                            <h4>Recent Tomes</h4>
+                            <div class="crafts-list" data-backend-source="recent-crafts">
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">📖</span>
+                                    <span class="craft-name">Bash II (Adept)</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+150 XP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="session-stats-section">
+                            <h4>Session Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-number">18</span>
+                                    <span class="stat-name">Tomes Scribed</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">5.4K</span>
+                                    <span class="stat-name">XP/Hour</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">83%</span>
+                                    <span class="stat-name">Success Rate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alchemy View -->
+            <div id="alchemy-view" class="view-container">
+                <div class="view-header">
+                    <h2>ALCHEMY</h2>
+                    <div class="skill-progress-header">
+                        <span class="skill-level-display">Level 40 (35,200 / 42,000 XP)</span>
+                    </div>
+                </div>
+                <div class="view-content crafting-layout">
+                    <div class="crafting-left-panel">
+                        <div class="recipe-list" data-backend-source="alchemy-recipes">
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Potions</div>
+                                <div class="recipe-item craftable" data-backend-action="select-recipe" data-recipe-id="health-potion">
+                                    <span class="recipe-icon">🧪</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Health Potion</span>
+                                        <span class="recipe-materials">🌿 Herbs x3 | 💧 Water x1</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.5</span>
+                                </div>
+                                <div class="recipe-item craftable" data-backend-action="select-recipe" data-recipe-id="power-potion">
+                                    <span class="recipe-icon">🧪</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Power Potion</span>
+                                        <span class="recipe-materials">🌺 Med Herbs x2 | 💧 Water x1</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.10</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Elixirs</div>
+                                <div class="recipe-item selected craftable" data-backend-action="select-recipe" data-recipe-id="strength-elixir">
+                                    <span class="recipe-icon">🍾</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Strength Elixir</span>
+                                        <span class="recipe-materials">🪴 Rare Plant x2 | 💧 Pure Water x2</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.30</span>
+                                </div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="defense-elixir">
+                                    <span class="recipe-icon">🍾</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Defense Elixir</span>
+                                        <span class="recipe-materials">🪴 Rare Plant x2 | 🧂 Salt x1</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.35</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Flasks</div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="haste-flask">
+                                    <span class="recipe-icon">⚗️</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Haste Flask</span>
+                                        <span class="recipe-materials">🍀 Ancient Herb x3 | 🧪 Catalyst x2</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.55</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="crafting-right-panel">
+                        <div class="recipe-display-card" data-backend-source="selected-recipe">
+                            <div class="recipe-display-header">
+                                <div class="recipe-display-icon">🍾</div>
+                                <div class="recipe-display-info">
+                                    <h3>Strength Elixir</h3>
+                                    <span class="recipe-requirement">Required Level: 30</span>
+                                    <div class="item-stats-preview">
+                                        <span class="item-stat">💪 +10% Attack</span>
+                                        <span class="item-stat">⏱️ Duration: 30 minutes</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="materials-required-section">
+                                <h4>Materials Required</h4>
+                                <div class="materials-list">
+                                    <div class="material-item has-materials">
+                                        <span class="material-icon">🪴</span>
+                                        <span class="material-name">Rare Plant</span>
+                                        <span class="material-count">2 / 2</span>
+                                    </div>
+                                    <div class="material-item has-materials">
+                                        <span class="material-icon">💧</span>
+                                        <span class="material-name">Pure Water</span>
+                                        <span class="material-count">2 / 2</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="recipe-details-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">⭐ Experience:</span>
+                                    <span class="detail-value">280 XP</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">✅ Success Rate:</span>
+                                    <span class="detail-value">92%</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">⏱️ Craft Time:</span>
+                                    <span class="detail-value">6.0s</span>
+                                </div>
+                            </div>
+
+                            <div class="crafting-progress-section" style="display: none;" data-ws-event="crafting-progress">
+                                <div class="progress-label">Brewing...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                            </div>
+
+                            <div class="craft-actions">
+                                <button class="btn-primary btn-large" data-backend-action="craft-item" data-recipe-id="strength-elixir" data-quantity="1">
+                                    🧪 Brew 1
+                                </button>
+                                <button class="btn-secondary btn-large" data-backend-action="craft-item" data-recipe-id="strength-elixir" data-quantity="10">
+                                    🧪 Brew 10
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="recent-crafts-section">
+                            <h4>Recent Brews</h4>
+                            <div class="crafts-list" data-backend-source="recent-crafts">
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">🍾</span>
+                                    <span class="craft-name">Strength Elixir</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+280 XP</span>
+                                </div>
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">🧪</span>
+                                    <span class="craft-name">Health Potion x10</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+1200 XP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="session-stats-section">
+                            <h4>Session Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-number">142</span>
+                                    <span class="stat-name">Items Brewed</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">11.8K</span>
+                                    <span class="stat-name">XP/Hour</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">94%</span>
+                                    <span class="stat-name">Success Rate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tailoring View -->
+            <div id="tailoring-view" class="view-container">
+                <div class="view-header">
+                    <h2>TAILORING</h2>
+                    <div class="skill-progress-header">
+                        <span class="skill-level-display">Level 22 (14,800 / 24,000 XP)</span>
+                    </div>
+                </div>
+                <div class="view-content crafting-layout">
+                    <div class="crafting-left-panel">
+                        <div class="recipe-list" data-backend-source="tailoring-recipes">
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Cloth Armor</div>
+                                <div class="recipe-item craftable" data-backend-action="select-recipe" data-recipe-id="linen-robe">
+                                    <span class="recipe-icon">👗</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Linen Robe</span>
+                                        <span class="recipe-materials">🧵 Cloth x8 | 🪡 Thread x2</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.10</span>
+                                </div>
+                                <div class="recipe-item selected craftable" data-backend-action="select-recipe" data-recipe-id="silk-robe">
+                                    <span class="recipe-icon">👗</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Silk Robe</span>
+                                        <span class="recipe-materials">🧵 Silk x10 | 🪡 Thread x3</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.25</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Bags</div>
+                                <div class="recipe-item craftable" data-backend-action="select-recipe" data-recipe-id="small-bag">
+                                    <span class="recipe-icon">🎒</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Small Bag (6 slots)</span>
+                                        <span class="recipe-materials">🧵 Cloth x4</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.5</span>
+                                </div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="large-bag">
+                                    <span class="recipe-icon">🎒</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Large Bag (12 slots)</span>
+                                        <span class="recipe-materials">🧵 Silk x6 | 🪡 Thread x4</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.35</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="crafting-right-panel">
+                        <div class="recipe-display-card" data-backend-source="selected-recipe">
+                            <div class="recipe-display-header">
+                                <div class="recipe-display-icon">👗</div>
+                                <div class="recipe-display-info">
+                                    <h3>Silk Robe</h3>
+                                    <span class="recipe-requirement">Required Level: 25</span>
+                                    <div class="item-stats-preview">
+                                        <span class="item-stat">🛡️ Defense: 22</span>
+                                        <span class="item-stat">🧠 INT: +15</span>
+                                        <span class="item-stat">🧙 WIS: +10</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="materials-required-section">
+                                <h4>Materials Required</h4>
+                                <div class="materials-list">
+                                    <div class="material-item has-materials">
+                                        <span class="material-icon">🧵</span>
+                                        <span class="material-name">Silk Cloth</span>
+                                        <span class="material-count">10 / 10</span>
+                                    </div>
+                                    <div class="material-item has-materials">
+                                        <span class="material-icon">🪡</span>
+                                        <span class="material-name">Thread</span>
+                                        <span class="material-count">3 / 3</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="recipe-details-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">⭐ Experience:</span>
+                                    <span class="detail-value">190 XP</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">✅ Success Rate:</span>
+                                    <span class="detail-value">88%</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">⏱️ Craft Time:</span>
+                                    <span class="detail-value">9.0s</span>
+                                </div>
+                            </div>
+
+                            <div class="crafting-progress-section" style="display: none;" data-ws-event="crafting-progress">
+                                <div class="progress-label">Tailoring...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                            </div>
+
+                            <div class="craft-actions">
+                                <button class="btn-primary btn-large" data-backend-action="craft-item" data-recipe-id="silk-robe" data-quantity="1">
+                                    🪡 Craft 1
+                                </button>
+                                <button class="btn-secondary btn-large" data-backend-action="craft-item" data-recipe-id="silk-robe" data-quantity="10">
+                                    🪡 Craft 10
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="recent-crafts-section">
+                            <h4>Recent Crafts</h4>
+                            <div class="crafts-list" data-backend-source="recent-crafts">
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">👗</span>
+                                    <span class="craft-name">Silk Robe</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+190 XP</span>
+                                </div>
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">🎒</span>
+                                    <span class="craft-name">Small Bag</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+80 XP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="session-stats-section">
+                            <h4>Session Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-number">56</span>
+                                    <span class="stat-name">Items Crafted</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">6.8K</span>
+                                    <span class="stat-name">XP/Hour</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">87%</span>
+                                    <span class="stat-name">Success Rate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cooking View -->
+            <div id="cooking-view" class="view-container">
+                <div class="view-header">
+                    <h2>COOKING</h2>
+                    <div class="skill-progress-header">
+                        <span class="skill-level-display">Level 18 (11,650 / 20,000 XP)</span>
+                    </div>
+                </div>
+                <div class="view-content crafting-layout">
+                    <div class="crafting-left-panel">
+                        <div class="recipe-list" data-backend-source="cooking-recipes">
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Basic Foods</div>
+                                <div class="recipe-item craftable" data-backend-action="select-recipe" data-recipe-id="grilled-fish">
+                                    <span class="recipe-icon">🐟</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Grilled Fish</span>
+                                        <span class="recipe-materials">🐟 Fish x2</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.5</span>
+                                </div>
+                                <div class="recipe-item selected craftable" data-backend-action="select-recipe" data-recipe-id="roasted-meat">
+                                    <span class="recipe-icon">🍖</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Roasted Meat</span>
+                                        <span class="recipe-materials">🥩 Meat x3</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.10</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Stews & Soups</div>
+                                <div class="recipe-item craftable" data-backend-action="select-recipe" data-recipe-id="vegetable-stew">
+                                    <span class="recipe-icon">🥘</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Vegetable Stew</span>
+                                        <span class="recipe-materials">🥕 Veggies x4 | 💧 Water x1</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.20</span>
+                                </div>
+                            </div>
+
+                            <div class="recipe-tier-section">
+                                <div class="tier-header">Feasts</div>
+                                <div class="recipe-item" data-backend-action="select-recipe" data-recipe-id="grand-feast">
+                                    <span class="recipe-icon">🍽️</span>
+                                    <div class="recipe-info">
+                                        <span class="recipe-name">Grand Feast</span>
+                                        <span class="recipe-materials">🍖 Meat x5 | 🐟 Fish x5 | 🥕 Veggies x5</span>
+                                    </div>
+                                    <span class="recipe-level">Lv.50</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="crafting-right-panel">
+                        <div class="recipe-display-card" data-backend-source="selected-recipe">
+                            <div class="recipe-display-header">
+                                <div class="recipe-display-icon">🍖</div>
+                                <div class="recipe-display-info">
+                                    <h3>Roasted Meat</h3>
+                                    <span class="recipe-requirement">Required Level: 10</span>
+                                    <div class="item-stats-preview">
+                                        <span class="item-stat">💪 +5% Strength</span>
+                                        <span class="item-stat">⏱️ Duration: 30 minutes</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="materials-required-section">
+                                <h4>Materials Required</h4>
+                                <div class="materials-list">
+                                    <div class="material-item has-materials">
+                                        <span class="material-icon">🥩</span>
+                                        <span class="material-name">Raw Meat</span>
+                                        <span class="material-count">3 / 3</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="recipe-details-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">⭐ Experience:</span>
+                                    <span class="detail-value">100 XP</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">✅ Success Rate:</span>
+                                    <span class="detail-value">95%</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">⏱️ Cook Time:</span>
+                                    <span class="detail-value">5.0s</span>
+                                </div>
+                            </div>
+
+                            <div class="crafting-progress-section" style="display: none;" data-ws-event="crafting-progress">
+                                <div class="progress-label">Cooking...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                            </div>
+
+                            <div class="craft-actions">
+                                <button class="btn-primary btn-large" data-backend-action="craft-item" data-recipe-id="roasted-meat" data-quantity="1">
+                                    🍳 Cook 1
+                                </button>
+                                <button class="btn-secondary btn-large" data-backend-action="craft-item" data-recipe-id="roasted-meat" data-quantity="10">
+                                    🍳 Cook 10
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="recent-crafts-section">
+                            <h4>Recent Dishes</h4>
+                            <div class="crafts-list" data-backend-source="recent-crafts">
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">🍖</span>
+                                    <span class="craft-name">Roasted Meat x10</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+1000 XP</span>
+                                </div>
+                                <div class="craft-result-item success">
+                                    <span class="craft-icon">🐟</span>
+                                    <span class="craft-name">Grilled Fish x5</span>
+                                    <span class="craft-status">✅ Success</span>
+                                    <span class="craft-xp">+400 XP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="session-stats-section">
+                            <h4>Session Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-number">218</span>
+                                    <span class="stat-name">Dishes Cooked</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">9.6K</span>
+                                    <span class="stat-name">XP/Hour</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">96%</span>
+                                    <span class="stat-name">Success Rate</span>
                                 </div>
                             </div>
                         </div>
