@@ -1,0 +1,369 @@
+/* Combat View Layout */
+.combat-layout {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    min-height: 600px;
+}
+
+.combat-left-panel {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    flex-shrink: 0;
+}
+
+.combat-right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Zone List */
+.zone-list {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.zone-item {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.zone-item:last-child {
+    border-bottom: none;
+}
+
+.zone-item:hover {
+    background: var(--bg-hover);
+}
+
+.zone-item.active {
+    background: var(--accent-primary);
+    color: white;
+}
+
+.zone-name {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.zone-level {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.zone-item.active .zone-level {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.zone-indicator {
+    font-size: 18px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Combat Settings */
+.combat-settings {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.setting-row {
+    margin-bottom: var(--spacing-md);
+}
+
+.setting-row label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.setting-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.settings-btn-full {
+    width: 100%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.settings-btn-full:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent-primary);
+}
+
+/* Current Combat Display */
+.current-combat-box {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.enemy-display {
+    text-align: center;
+}
+
+.enemy-sprite {
+    width: 120px;
+    height: 120px;
+    background: var(--bg-tertiary);
+    border: 3px solid var(--accent-primary);
+    border-radius: 50%;
+    margin: 0 auto var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.sprite-icon {
+    font-size: 64px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.enemy-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.enemy-elite {
+    font-size: 14px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}
+
+.enemy-health-bar {
+    margin: var(--spacing-lg) 0;
+}
+
+.health-bar {
+    position: relative;
+    height: 32px;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.health-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #dc2626, #ef4444);
+    transition: width 0.5s ease;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+.health-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+.enemy-info {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-md) 0;
+    font-size: 14px;
+}
+
+.enemy-level {
+    color: var(--warning-color);
+    font-weight: 600;
+}
+
+.enemy-damage-types {
+    color: var(--danger-color);
+    font-weight: 600;
+}
+
+.enemy-drops,
+.victory-timer {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-sm);
+}
+
+/* Player Status Box */
+.player-status-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.status-header {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-md);
+}
+
+.status-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    font-size: 14px;
+}
+
+.status-label {
+    min-width: 100px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.status-value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.ability-current {
+    color: var(--accent-primary);
+}
+
+.damage-number {
+    color: var(--warning-color);
+    font-weight: 700;
+}
+
+.health-bar-small,
+.power-bar-small {
+    flex: 1;
+    height: 20px;
+}
+
+/* Recent Loot Box */
+.recent-loot-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.loot-header {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-md);
+}
+
+.loot-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.loot-item {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    transition: all var(--transition-fast);
+}
+
+.loot-item:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent-primary);
+}
+
+.loot-icon {
+    font-size: 24px;
+    width: 32px;
+    text-align: center;
+}
+
+.loot-name {
+    flex: 1;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.loot-tome {
+    border-color: var(--rare);
+    background: linear-gradient(135deg, var(--bg-tertiary), rgba(59, 130, 246, 0.1));
+}
+
+.loot-tome .loot-name {
+    color: var(--rare);
+}
+
+.loot-equipment {
+    border-color: var(--uncommon);
+}
+
+.loot-equipment .loot-name {
+    color: var(--uncommon);
+}
+
+.use-btn {
+    background: var(--accent-primary);
+    border: none;
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all var(--transition-fast);
+}
+
+.use-btn:hover {
+    background: var(--accent-hover);
+    transform: scale(1.05);
+}

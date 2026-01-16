@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle MMORPG</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/combat.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <div class="character-info">
+                <span class="class-name">Shadowknight</span>
+                <span class="level">Lv.<span id="player-level">45</span></span>
+            </div>
+            <div class="xp-container">
+                <div class="xp-label">XP:</div>
+                <div class="progress-bar xp-bar">
+                    <div class="progress-fill" style="width: 82%"></div>
+                    <span class="progress-text">82%</span>
+                </div>
+            </div>
+            <div class="aa-container">
+                <div class="aa-label">AA:</div>
+                <div class="aa-points"><span id="aa-points">25</span> pts</div>
+            </div>
+        </div>
+
+        <div class="top-bar-center">
+            <div class="active-buffs">
+                <div class="buff-icon" data-tooltip="Defensive Stance - Lv.20">
+                    <span class="icon">🛡️</span>
+                    <span class="buff-level">20</span>
+                </div>
+                <div class="buff-icon" data-tooltip="Strength Buff - Lv.20">
+                    <span class="icon">💪</span>
+                    <span class="buff-level">20</span>
+                </div>
+                <div class="buff-icon" data-tooltip="Haste - Lv.20">
+                    <span class="icon">⚡</span>
+                    <span class="buff-level">20</span>
+                </div>
+                <div class="buff-icon" data-tooltip="Guild Buff - Lv.20">
+                    <span class="icon">🔮</span>
+                    <span class="buff-level">20</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="top-bar-right">
+            <div class="guild-info">
+                <span class="guild-tag">&lt;DARK&gt;</span>
+            </div>
+            <div class="character-name">Wisbe</div>
+            <div class="character-avatar">
+                <span class="avatar-icon">👤</span>
+            </div>
+            <button class="settings-btn">⚙️</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+            <nav class="sidebar-nav">
+                <!-- Main Sections -->
+                <div class="nav-section">
+                    <button class="nav-item active" data-view="character-sheet">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-label">Character</span>
+                    </button>
+                    <button class="nav-item" data-view="combat">
+                        <span class="nav-icon">⚔️</span>
+                        <span class="nav-label">Combat</span>
+                    </button>
+                    <button class="nav-item" data-view="dungeons">
+                        <span class="nav-icon">🏰</span>
+                        <span class="nav-label">Dungeons</span>
+                    </button>
+                    <button class="nav-item" data-view="raids">
+                        <span class="nav-icon">🎖️</span>
+                        <span class="nav-label">Raids</span>
+                    </button>
+                    <button class="nav-item" data-view="party-finder">
+                        <span class="nav-icon">👥</span>
+                        <span class="nav-label">Party Finder</span>
+                    </button>
+                </div>
+
+                <!-- Gathering Skills -->
+                <div class="nav-section">
+                    <div class="section-header">Gathering</div>
+                    <button class="nav-item skill-item" data-view="woodcutting">
+                        <span class="nav-icon">🌲</span>
+                        <span class="nav-label">Woodcutting</span>
+                        <span class="skill-level">35</span>
+                    </button>
+                    <button class="nav-item skill-item" data-view="mining">
+                        <span class="nav-icon">⛏️</span>
+                        <span class="nav-label">Mining</span>
+                        <span class="skill-level">42</span>
+                    </button>
+                    <button class="nav-item skill-item" data-view="foraging">
+                        <span class="nav-icon">🌾</span>
+                        <span class="nav-label">Foraging</span>
+                        <span class="skill-level">28</span>
+                    </button>
+                    <button class="nav-item skill-item" data-view="fishing">
+                        <span class="nav-icon">🎣</span>
+                        <span class="nav-label">Fishing</span>
+                        <span class="skill-level">15</span>
+                    </button>
+                </div>
+
+                <!-- Crafting Skills -->
+                <div class="nav-section">
+                    <div class="section-header">Crafting</div>
+                    <button class="nav-item skill-item" data-view="weaponsmithing">
+                        <span class="nav-icon">🔨</span>
+                        <span class="nav-label">Weaponsmith</span>
+                        <span class="skill-level">30</span>
+                    </button>
+                    <button class="nav-item skill-item" data-view="armorsmithing">
+                        <span class="nav-icon">🛡️</span>
+                        <span class="nav-label">Armorsmith</span>
+                        <span class="skill-level">33</span>
+                    </button>
+                    <button class="nav-item skill-item" data-view="scribing">
+                        <span class="nav-icon">📜</span>
+                        <span class="nav-label">Scribing</span>
+                        <span class="skill-level">25</span>
+                    </button>
+                    <button class="nav-item skill-item" data-view="alchemy">
+                        <span class="nav-icon">🧪</span>
+                        <span class="nav-label">Alchemy</span>
+                        <span class="skill-level">40</span>
+                    </button>
+                    <button class="nav-item skill-item" data-view="tailoring">
+                        <span class="nav-icon">👗</span>
+                        <span class="nav-label">Tailoring</span>
+                        <span class="skill-level">22</span>
+                    </button>
+                    <button class="nav-item skill-item" data-view="cooking">
+                        <span class="nav-icon">🍖</span>
+                        <span class="nav-label">Cooking</span>
+                        <span class="skill-level">18</span>
+                    </button>
+                </div>
+
+                <!-- Social -->
+                <div class="nav-section">
+                    <div class="section-header">Social</div>
+                    <button class="nav-item" data-view="guild">
+                        <span class="nav-icon">💬</span>
+                        <span class="nav-label">Guild</span>
+                    </button>
+                    <button class="nav-item" data-view="trading">
+                        <span class="nav-icon">🏪</span>
+                        <span class="nav-label">Trading Post</span>
+                    </button>
+                    <button class="nav-item" data-view="mail">
+                        <span class="nav-icon">📧</span>
+                        <span class="nav-label">Mail</span>
+                    </button>
+                    <button class="nav-item" data-view="friends">
+                        <span class="nav-icon">👥</span>
+                        <span class="nav-label">Friends</span>
+                    </button>
+                    <button class="nav-item" data-view="leaderboards">
+                        <span class="nav-icon">🏆</span>
+                        <span class="nav-label">Leaderboards</span>
+                    </button>
+                </div>
+
+                <!-- Systems -->
+                <div class="nav-section">
+                    <div class="section-header">Systems</div>
+                    <button class="nav-item" data-view="quests">
+                        <span class="nav-icon">📋</span>
+                        <span class="nav-label">Quests</span>
+                    </button>
+                    <button class="nav-item" data-view="achievements">
+                        <span class="nav-icon">🎯</span>
+                        <span class="nav-label">Achievements</span>
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Combat View (default) -->
+            <div id="combat-view" class="view-container active">
+                <div class="view-header">
+                    <div class="tab-container">
+                        <button class="tab active" data-tab="combat-zones">Combat Zones</button>
+                        <button class="tab" data-tab="find-party">Find Party</button>
+                        <button class="tab" data-tab="my-party">My Party</button>
+                    </div>
+                </div>
+
+                <div class="view-content combat-layout">
+                    <!-- Left Panel - Zone Selection -->
+                    <div class="combat-left-panel">
+                        <div class="zone-list">
+                            <div class="zone-item">
+                                <span class="zone-name">Starter Zone</span>
+                                <span class="zone-level">Lv.1-10</span>
+                            </div>
+                            <div class="zone-item">
+                                <span class="zone-name">Forest Zone</span>
+                                <span class="zone-level">Lv.10-20</span>
+                            </div>
+                            <div class="zone-item">
+                                <span class="zone-name">Desert Zone</span>
+                                <span class="zone-level">Lv.20-30</span>
+                            </div>
+                            <div class="zone-item active">
+                                <span class="zone-name">Cave Zone</span>
+                                <span class="zone-level">Lv.30-40</span>
+                                <span class="zone-indicator">◀</span>
+                            </div>
+                            <div class="zone-item">
+                                <span class="zone-name">Mountain Zone</span>
+                                <span class="zone-level">Lv.40-50</span>
+                            </div>
+                            <div class="zone-item">
+                                <span class="zone-name">Volcano Zone</span>
+                                <span class="zone-level">Lv.50-60</span>
+                            </div>
+                            <div class="zone-item">
+                                <span class="zone-name">Shadow Zone</span>
+                                <span class="zone-level">Lv.60-70</span>
+                            </div>
+                            <div class="zone-item">
+                                <span class="zone-name">Void Zone</span>
+                                <span class="zone-level">Lv.70-80</span>
+                            </div>
+                            <div class="zone-item">
+                                <span class="zone-name">Endgame Zone</span>
+                                <span class="zone-level">Lv.90-99</span>
+                            </div>
+                        </div>
+
+                        <div class="combat-settings">
+                            <div class="setting-row">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    Auto-Combat
+                                </label>
+                            </div>
+                            <button class="settings-btn-full">⚙️ Combat Settings</button>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel - Combat Display -->
+                    <div class="combat-right-panel">
+                        <!-- Current Combat Status -->
+                        <div class="current-combat-box">
+                            <div class="enemy-display">
+                                <div class="enemy-sprite">
+                                    <span class="sprite-icon">👹</span>
+                                </div>
+                                <div class="enemy-name">
+                                    Orc Warrior
+                                    <span class="enemy-elite">⭐ Elite</span>
+                                </div>
+                                <div class="enemy-health-bar">
+                                    <div class="health-bar">
+                                        <div class="health-fill" style="width: 84.5%"></div>
+                                        <span class="health-text">8,450 / 10,000</span>
+                                    </div>
+                                </div>
+                                <div class="enemy-info">
+                                    <span class="enemy-level">⚔️ Lv.42</span>
+                                    <span class="enemy-damage-types">💀 Trauma/Noxious</span>
+                                </div>
+                                <div class="enemy-drops">
+                                    💰 Drops: Gold, Gear, Tomes
+                                </div>
+                                <div class="victory-timer">
+                                    ⏱️ Victory in ~45s
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Player Status -->
+                        <div class="player-status-box">
+                            <div class="status-header">YOUR STATUS:</div>
+                            <div class="status-row">
+                                <span class="status-label">❤️ Health:</span>
+                                <div class="progress-bar health-bar-small">
+                                    <div class="progress-fill health-fill" style="width: 84%"></div>
+                                    <span class="progress-text">12,540 / 15,000 (84%)</span>
+                                </div>
+                            </div>
+                            <div class="status-row">
+                                <span class="status-label">💙 Power:</span>
+                                <div class="progress-bar power-bar-small">
+                                    <div class="progress-fill power-fill" style="width: 64%"></div>
+                                    <span class="progress-text">3,200 / 5,000 (64%)</span>
+                                </div>
+                            </div>
+                            <div class="status-row">
+                                <span class="status-label">🛡️ Mitigation:</span>
+                                <span class="status-value">45%</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="status-label">⚡ Using:</span>
+                                <span class="status-value ability-current">Bash III (Master)</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="status-label">💥 Last Hit:</span>
+                                <span class="status-value damage-number">1,245 dmg</span>
+                            </div>
+                        </div>
+
+                        <!-- Recent Loot -->
+                        <div class="recent-loot-box">
+                            <div class="loot-header">RECENT LOOT:</div>
+                            <div class="loot-list">
+                                <div class="loot-item">
+                                    <span class="loot-icon">💰</span>
+                                    <span class="loot-name">Gold x145</span>
+                                </div>
+                                <div class="loot-item">
+                                    <span class="loot-icon">⛏️</span>
+                                    <span class="loot-name">Iron Ore x3</span>
+                                </div>
+                                <div class="loot-item loot-tome">
+                                    <span class="loot-icon">📖</span>
+                                    <span class="loot-name">Bash II (Adept)</span>
+                                    <button class="use-btn">USE</button>
+                                </div>
+                                <div class="loot-item loot-equipment">
+                                    <span class="loot-icon">⚔️</span>
+                                    <span class="loot-name">Rusty Sword</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Character Sheet View -->
+            <div id="character-sheet-view" class="view-container">
+                <div class="view-header">
+                    <h2>CHARACTER SHEET</h2>
+                </div>
+                <div class="view-content character-sheet-layout">
+                    <div class="character-top">
+                        <div class="character-portrait">
+                            <span class="portrait-icon">🛡️</span>
+                        </div>
+                        <div class="character-details">
+                            <h1>Shadowknight - Level 45</h1>
+                            <div class="character-role">Role: TANK</div>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <!-- Primary Stats -->
+                        <div class="stats-panel">
+                            <h3>PRIMARY STATS</h3>
+                            <div class="stat-row">
+                                <span class="stat-name">Strength:</span>
+                                <span class="stat-value">245 <span class="stat-increase">⬆️</span></span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Stamina:</span>
+                                <span class="stat-value">198 <span class="stat-increase">⬆️</span></span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Agility:</span>
+                                <span class="stat-value">95</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Intelligence:</span>
+                                <span class="stat-value">80</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Wisdom:</span>
+                                <span class="stat-value">75</span>
+                            </div>
+                        </div>
+
+                        <!-- Combat Stats -->
+                        <div class="stats-panel">
+                            <h3>COMBAT STATS</h3>
+                            <div class="stat-row">
+                                <span class="stat-name">Health:</span>
+                                <span class="stat-value">15,000</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Power:</span>
+                                <span class="stat-value">5,000</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Offense:</span>
+                                <span class="stat-value">450</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Defense:</span>
+                                <span class="stat-value">380</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Mitigation:</span>
+                                <span class="stat-value">45%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Crit Chance:</span>
+                                <span class="stat-value">12%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Crit Bonus:</span>
+                                <span class="stat-value">+28%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Haste:</span>
+                                <span class="stat-value">18%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Potency:</span>
+                                <span class="stat-value">8%</span>
+                            </div>
+                        </div>
+
+                        <!-- Resistances -->
+                        <div class="stats-panel">
+                            <h3>RESISTANCES</h3>
+                            <div class="stat-row">
+                                <span class="stat-name">Elemental:</span>
+                                <span class="stat-value">15%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Arcane:</span>
+                                <span class="stat-value">12%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Noxious:</span>
+                                <span class="stat-value">18%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Trauma:</span>
+                                <span class="stat-value">20%</span>
+                            </div>
+                        </div>
+
+                        <!-- Performance -->
+                        <div class="stats-panel">
+                            <h3>PERFORMANCE</h3>
+                            <div class="stat-row">
+                                <span class="stat-name">DPS (avg):</span>
+                                <span class="stat-value">1,245/sec</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Total Damage:</span>
+                                <span class="stat-value">2,487,921</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-name">Kills:</span>
+                                <span class="stat-value">1,523</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="character-actions">
+                        <button class="btn-primary">View Equipment</button>
+                        <button class="btn-secondary">Allocate Stat Points</button>
+                        <button class="btn-secondary">View AA Tree</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bottom Ability Bar (Always Visible) -->
+    <footer class="ability-bar">
+        <!-- Consumables -->
+        <div class="consumables-section">
+            <div class="section-label">Consumables:</div>
+            <div class="consumables-grid">
+                <div class="consumable-slot">
+                    <div class="consumable-icon">🧪</div>
+                    <div class="consumable-name">HP Pot</div>
+                    <div class="consumable-count">15</div>
+                    <button class="consumable-settings">⚙️</button>
+                    <div class="consumable-condition">HP &lt; 30%</div>
+                </div>
+                <div class="consumable-slot">
+                    <div class="consumable-icon">🍖</div>
+                    <div class="consumable-name">Food</div>
+                    <div class="consumable-count">8</div>
+                    <button class="consumable-settings">⚙️</button>
+                    <div class="consumable-condition">Always</div>
+                </div>
+                <div class="consumable-slot">
+                    <div class="consumable-icon">🍺</div>
+                    <div class="consumable-name">Brew</div>
+                    <div class="consumable-count">5</div>
+                    <button class="consumable-settings">⚙️</button>
+                    <div class="consumable-condition">Power &lt; 20%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Abilities -->
+        <div class="abilities-section">
+            <div class="section-label">Abilities (Priority Order):</div>
+            <div class="abilities-grid">
+                <div class="ability-slot" data-slot="1">
+                    <div class="ability-icon">⚔️</div>
+                    <div class="ability-name">Bash</div>
+                    <div class="ability-level">III</div>
+                    <div class="ability-tier">M</div>
+                    <button class="ability-settings">⚙️</button>
+                    <div class="ability-status ready">🟢</div>
+                    <div class="ability-cooldown">2.1s</div>
+                </div>
+                <div class="ability-slot" data-slot="2">
+                    <div class="ability-icon">🛡️</div>
+                    <div class="ability-name">Def</div>
+                    <div class="ability-level">II</div>
+                    <div class="ability-tier">A</div>
+                    <button class="ability-settings">⚙️</button>
+                    <div class="ability-status ready">🟢</div>
+                    <div class="ability-cooldown">Ready</div>
+                </div>
+                <div class="ability-slot" data-slot="3">
+                    <div class="ability-icon">💉</div>
+                    <div class="ability-name">Lifetap</div>
+                    <div class="ability-level">IV</div>
+                    <div class="ability-tier">E</div>
+                    <button class="ability-settings">⚙️</button>
+                    <div class="ability-status cooldown">🟡</div>
+                    <div class="ability-cooldown">4.3s</div>
+                </div>
+                <div class="ability-slot" data-slot="4">
+                    <div class="ability-icon">🔥</div>
+                    <div class="ability-name">Soulfire</div>
+                    <div class="ability-level">II</div>
+                    <div class="ability-tier">A</div>
+                    <button class="ability-settings">⚙️</button>
+                    <div class="ability-status no-power">🔴</div>
+                    <div class="ability-cooldown">8.9s</div>
+                </div>
+                <div class="ability-slot" data-slot="5">
+                    <div class="ability-icon">💀</div>
+                    <div class="ability-name">Fear</div>
+                    <div class="ability-level">I</div>
+                    <div class="ability-tier">A</div>
+                    <button class="ability-settings">⚙️</button>
+                    <div class="ability-status ready">🟢</div>
+                    <div class="ability-cooldown">Ready</div>
+                </div>
+                <div class="ability-slot" data-slot="6">
+                    <div class="ability-icon">⚡</div>
+                    <div class="ability-name">Stun</div>
+                    <div class="ability-level">III</div>
+                    <div class="ability-tier">A</div>
+                    <button class="ability-settings">⚙️</button>
+                    <div class="ability-status ready">🟢</div>
+                    <div class="ability-cooldown">Ready</div>
+                </div>
+                <div class="ability-slot" data-slot="7">
+                    <div class="ability-icon">🌟</div>
+                    <div class="ability-name">Harm</div>
+                    <div class="ability-level">V</div>
+                    <div class="ability-tier">M</div>
+                    <button class="ability-settings">⚙️</button>
+                    <div class="ability-status ready">🟢</div>
+                    <div class="ability-cooldown">Ready</div>
+                </div>
+                <div class="ability-slot" data-slot="8">
+                    <div class="ability-icon">🗡️</div>
+                    <div class="ability-name">Stab</div>
+                    <div class="ability-level">I</div>
+                    <div class="ability-tier">A</div>
+                    <button class="ability-settings">⚙️</button>
+                    <div class="ability-status cooldown">🟡</div>
+                    <div class="ability-cooldown">3.2s</div>
+                </div>
+            </div>
+            <div class="ability-legend">
+                <span>Tier: <strong>M</strong>=Master, <strong>E</strong>=Expert, <strong>A</strong>=Adept, <strong>AP</strong>=Apprentice</span>
+                <span class="separator">|</span>
+                <span>Status: 🟢=Ready 🟡=Cooldown 🔴=No Power</span>
+            </div>
+            <div class="ability-actions">
+                <button class="btn-secondary">Edit Abilities</button>
+                <button class="btn-secondary">Load Preset ▼</button>
+                <button class="btn-secondary">Save Preset</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Ability Configuration -->
+    <div id="ability-config-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>ABILITY SLOT #<span id="modal-slot-number">1</span></h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="config-section">
+                    <label>Currently Equipped:</label>
+                    <div class="current-ability">
+                        <span class="ability-display">Bash III (Master)</span>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <label>Change Ability:</label>
+                    <select class="ability-select">
+                        <option selected>⚔️ Bash III (Master)</option>
+                        <option>⚔️ Taunt II (Adept)</option>
+                        <option>🛡️ Defensive Stance II (Adept)</option>
+                        <option>💉 Lifetap IV (Master)</option>
+                        <option>🔥 Soulfire II (Apprentice)</option>
+                        <!-- More abilities populated by JS -->
+                    </select>
+                </div>
+
+                <div class="config-section">
+                    <label>Activation Conditions:</label>
+                    <div class="conditions-container">
+                        <div class="condition-row">
+                            <span class="condition-label">Condition 1:</span>
+                            <select class="condition-type">
+                                <option value="target-hp">Target HP</option>
+                                <option value="self-hp">Self HP</option>
+                                <option value="self-power">Self Power</option>
+                                <option value="party-hp">Party Avg HP</option>
+                                <option value="combat-duration">Combat Duration</option>
+                            </select>
+                            <select class="condition-operator">
+                                <option value=">">&gt;</option>
+                                <option value="<">&lt;</option>
+                                <option value="=">=</option>
+                                <option value=">=">&gt;=</option>
+                                <option value="<=">&lt;=</option>
+                            </select>
+                            <input type="number" class="condition-value" value="80" min="0" max="100">
+                            <span>%</span>
+                            <button class="btn-remove-condition">✕</button>
+                        </div>
+
+                        <div class="condition-logic">
+                            <select class="logic-operator">
+                                <option value="AND">AND</option>
+                                <option value="OR">OR</option>
+                            </select>
+                        </div>
+
+                        <div class="condition-row">
+                            <span class="condition-label">Condition 2:</span>
+                            <select class="condition-type">
+                                <option value="self-power" selected>Self Power</option>
+                                <option value="target-hp">Target HP</option>
+                                <option value="self-hp">Self HP</option>
+                            </select>
+                            <select class="condition-operator">
+                                <option value=">" selected>&gt;</option>
+                                <option value="<">&lt;</option>
+                            </select>
+                            <input type="number" class="condition-value" value="50" min="0" max="100">
+                            <span>%</span>
+                            <button class="btn-remove-condition">✕</button>
+                        </div>
+                    </div>
+                    <button class="btn-add-condition">+ Add Condition</button>
+                    <div class="condition-note">Maximum 3 conditions per ability</div>
+                </div>
+
+                <div class="config-section">
+                    <label>Priority:</label>
+                    <select class="priority-select">
+                        <option value="1" selected>1 (Highest)</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8 (Lowest)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary">Save Changes</button>
+                <button class="btn-secondary">Reset to Default</button>
+                <button class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/combat.js"></script>
+    <script src="js/abilities.js"></script>
+</body>
+</html>
