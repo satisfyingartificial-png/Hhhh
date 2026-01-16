@@ -65,7 +65,7 @@ class GameUI {
             'cooking': 'cooking-view',
             // Social Views
             'guild': 'guild-view',
-            'trading-post': 'trading-post-view',
+            'trading': 'trading-view',
             'mail': 'mail-view',
             'friends': 'friends-view',
             'leaderboards': 'leaderboards-view',
