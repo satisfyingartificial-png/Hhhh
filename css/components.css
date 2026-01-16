@@ -118,11 +118,13 @@
     right: 0;
     background: var(--bg-secondary);
     border-top: 2px solid var(--border-color);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4);
     z-index: 50;
     display: flex;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
+    max-height: 140px;
+    overflow-y: auto;
 }
 
 .consumables-section {
@@ -134,25 +136,25 @@
 }
 
 .section-label {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 700;
     color: var(--text-muted);
     text-transform: uppercase;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: 4px;
 }
 
 /* Consumables Grid */
 .consumables-grid {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
 }
 
 .consumable-slot {
-    width: 80px;
+    width: 60px;
     background: var(--bg-tertiary);
     border: 2px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    padding: 4px;
     text-align: center;
     position: relative;
     transition: all var(--transition-fast);
@@ -164,22 +166,22 @@
 }
 
 .consumable-icon {
-    font-size: 32px;
-    margin-bottom: var(--spacing-xs);
+    font-size: 24px;
+    margin-bottom: 2px;
 }
 
 .consumable-name {
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 2px;
 }
 
 .consumable-count {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     color: var(--warning-color);
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 2px;
 }
 
 .consumable-settings {
@@ -187,10 +189,10 @@
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
     width: 100%;
-    padding: 4px;
+    padding: 2px;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    font-size: 12px;
+    font-size: 10px;
     transition: all var(--transition-fast);
 }
 
@@ -200,9 +202,9 @@
 }
 
 .consumable-condition {
-    font-size: 10px;
+    font-size: 8px;
     color: var(--text-muted);
-    margin-top: var(--spacing-xs);
+    margin-top: 2px;
     font-style: italic;
 }
 
@@ -210,15 +212,15 @@
 .abilities-grid {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
 }
 
 .ability-slot {
     background: var(--bg-tertiary);
     border: 2px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    padding: 4px;
     text-align: center;
     position: relative;
     cursor: pointer;
@@ -232,32 +234,32 @@
 }
 
 .ability-icon {
-    font-size: 36px;
-    margin-bottom: var(--spacing-xs);
+    font-size: 28px;
+    margin-bottom: 2px;
 }
 
 .ability-name {
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 }
 
 .ability-level {
-    font-size: 10px;
+    font-size: 8px;
     color: var(--text-secondary);
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 }
 
 .ability-tier {
     display: inline-block;
-    font-size: 10px;
+    font-size: 8px;
     font-weight: 700;
     background: var(--accent-primary);
     color: white;
-    padding: 2px 6px;
+    padding: 1px 4px;
     border-radius: var(--radius-sm);
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 2px;
 }
 
 .ability-settings {
@@ -265,12 +267,12 @@
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
     width: 100%;
-    padding: 4px;
+    padding: 2px;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    font-size: 12px;
+    font-size: 10px;
     transition: all var(--transition-fast);
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 2px;
 }
 
 .ability-settings:hover {
@@ -279,8 +281,8 @@
 }
 
 .ability-status {
-    font-size: 16px;
-    margin-bottom: 2px;
+    font-size: 12px;
+    margin-bottom: 1px;
 }
 
 .ability-status.ready {
@@ -296,7 +298,7 @@
 }
 
 .ability-cooldown {
-    font-size: 10px;
+    font-size: 8px;
     color: var(--text-muted);
     font-weight: 600;
 }
@@ -306,13 +308,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-md);
-    font-size: 12px;
+    gap: var(--spacing-sm);
+    font-size: 10px;
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-md);
-    padding: var(--spacing-sm);
+    margin-bottom: 4px;
+    padding: 4px;
     background: var(--bg-tertiary);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
 }
 
 .ability-legend strong {
