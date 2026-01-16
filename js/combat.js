@@ -135,7 +135,7 @@ class CombatManager {
         const combatBox = document.querySelector('.current-combat-box');
 
         if (selectionBox) selectionBox.style.display = 'none';
-        if (combatBox) combatBox.style.display = 'block';
+        if (combatBox) combatBox.style.display = 'flex';
 
         this.updateEnemyDisplay();
     }
@@ -145,7 +145,7 @@ class CombatManager {
         const selectionBox = document.querySelector('.enemy-selection-box');
         const combatBox = document.querySelector('.current-combat-box');
 
-        if (selectionBox) selectionBox.style.display = 'block';
+        if (selectionBox) selectionBox.style.display = 'flex';
         if (combatBox) combatBox.style.display = 'none';
     }
 
