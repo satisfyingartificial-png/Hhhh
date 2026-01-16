@@ -3414,122 +3414,85 @@
         </main>
     </div>
 
-    <!-- Bottom Ability Bar (Always Visible) -->
+    <!-- Bottom Ability Bar (Always Visible) - Diablo 2 Style -->
     <footer class="ability-bar">
-        <!-- Consumables -->
-        <div class="consumables-section">
-            <div class="section-label">Consumables:</div>
-            <div class="consumables-grid">
-                <div class="consumable-slot">
-                    <div class="consumable-icon">🧪</div>
-                    <div class="consumable-name">HP Pot</div>
-                    <div class="consumable-count">15</div>
-                    <button class="consumable-settings">⚙️</button>
-                    <div class="consumable-condition">HP &lt; 30%</div>
-                </div>
-                <div class="consumable-slot">
-                    <div class="consumable-icon">🍖</div>
-                    <div class="consumable-name">Food</div>
-                    <div class="consumable-count">8</div>
-                    <button class="consumable-settings">⚙️</button>
-                    <div class="consumable-condition">Always</div>
-                </div>
-                <div class="consumable-slot">
-                    <div class="consumable-icon">🍺</div>
-                    <div class="consumable-name">Brew</div>
-                    <div class="consumable-count">5</div>
-                    <button class="consumable-settings">⚙️</button>
-                    <div class="consumable-condition">Power &lt; 20%</div>
-                </div>
+        <!-- Mana Globe (Left) -->
+        <div class="resource-globe mana-globe">
+            <div class="globe-fill mana-fill" style="height: 82%;"></div>
+            <div class="globe-shine"></div>
+            <div class="globe-text">
+                <span class="globe-value">410 / 500</span>
+                <span class="globe-label">MANA</span>
             </div>
         </div>
 
-        <!-- Abilities -->
-        <div class="abilities-section">
-            <div class="section-label">Abilities (Priority Order):</div>
-            <div class="abilities-grid">
-                <div class="ability-slot" data-slot="1">
-                    <div class="ability-icon">⚔️</div>
-                    <div class="ability-name">Bash</div>
-                    <div class="ability-level">III</div>
-                    <div class="ability-tier">M</div>
-                    <button class="ability-settings">⚙️</button>
-                    <div class="ability-status ready">🟢</div>
-                    <div class="ability-cooldown">2.1s</div>
-                </div>
-                <div class="ability-slot" data-slot="2">
-                    <div class="ability-icon">🛡️</div>
-                    <div class="ability-name">Def</div>
-                    <div class="ability-level">II</div>
-                    <div class="ability-tier">A</div>
-                    <button class="ability-settings">⚙️</button>
-                    <div class="ability-status ready">🟢</div>
-                    <div class="ability-cooldown">Ready</div>
-                </div>
-                <div class="ability-slot" data-slot="3">
-                    <div class="ability-icon">💉</div>
-                    <div class="ability-name">Lifetap</div>
-                    <div class="ability-level">IV</div>
-                    <div class="ability-tier">E</div>
-                    <button class="ability-settings">⚙️</button>
-                    <div class="ability-status cooldown">🟡</div>
-                    <div class="ability-cooldown">4.3s</div>
-                </div>
-                <div class="ability-slot" data-slot="4">
-                    <div class="ability-icon">🔥</div>
-                    <div class="ability-name">Soulfire</div>
-                    <div class="ability-level">II</div>
-                    <div class="ability-tier">A</div>
-                    <button class="ability-settings">⚙️</button>
-                    <div class="ability-status no-power">🔴</div>
-                    <div class="ability-cooldown">8.9s</div>
-                </div>
-                <div class="ability-slot" data-slot="5">
-                    <div class="ability-icon">💀</div>
-                    <div class="ability-name">Fear</div>
-                    <div class="ability-level">I</div>
-                    <div class="ability-tier">A</div>
-                    <button class="ability-settings">⚙️</button>
-                    <div class="ability-status ready">🟢</div>
-                    <div class="ability-cooldown">Ready</div>
-                </div>
-                <div class="ability-slot" data-slot="6">
-                    <div class="ability-icon">⚡</div>
-                    <div class="ability-name">Stun</div>
-                    <div class="ability-level">III</div>
-                    <div class="ability-tier">A</div>
-                    <button class="ability-settings">⚙️</button>
-                    <div class="ability-status ready">🟢</div>
-                    <div class="ability-cooldown">Ready</div>
-                </div>
-                <div class="ability-slot" data-slot="7">
-                    <div class="ability-icon">🌟</div>
-                    <div class="ability-name">Harm</div>
-                    <div class="ability-level">V</div>
-                    <div class="ability-tier">M</div>
-                    <button class="ability-settings">⚙️</button>
-                    <div class="ability-status ready">🟢</div>
-                    <div class="ability-cooldown">Ready</div>
-                </div>
-                <div class="ability-slot" data-slot="8">
-                    <div class="ability-icon">🗡️</div>
-                    <div class="ability-name">Stab</div>
-                    <div class="ability-level">I</div>
-                    <div class="ability-tier">A</div>
-                    <button class="ability-settings">⚙️</button>
-                    <div class="ability-status cooldown">🟡</div>
-                    <div class="ability-cooldown">3.2s</div>
-                </div>
+        <!-- Ability Slots (Center) -->
+        <div class="abilities-container">
+            <div class="ability-slot" data-slot="1">
+                <div class="ability-icon">⚔️</div>
+                <div class="ability-name">Bash</div>
+                <div class="ability-tier">M</div>
+                <button class="ability-settings">⚙️</button>
+                <div class="ability-cooldown">2.1s</div>
             </div>
-            <div class="ability-legend">
-                <span>Tier: <strong>M</strong>=Master, <strong>E</strong>=Expert, <strong>A</strong>=Adept, <strong>AP</strong>=Apprentice</span>
-                <span class="separator">|</span>
-                <span>Status: 🟢=Ready 🟡=Cooldown 🔴=No Power</span>
+            <div class="ability-slot" data-slot="2">
+                <div class="ability-icon">🛡️</div>
+                <div class="ability-name">Def</div>
+                <div class="ability-tier">A</div>
+                <button class="ability-settings">⚙️</button>
+                <div class="ability-cooldown">Ready</div>
             </div>
-            <div class="ability-actions">
-                <button class="btn-secondary">Edit Abilities</button>
-                <button class="btn-secondary">Load Preset ▼</button>
-                <button class="btn-secondary">Save Preset</button>
+            <div class="ability-slot" data-slot="3">
+                <div class="ability-icon">💉</div>
+                <div class="ability-name">Lifetap</div>
+                <div class="ability-tier">E</div>
+                <button class="ability-settings">⚙️</button>
+                <div class="ability-cooldown">4.3s</div>
+            </div>
+            <div class="ability-slot" data-slot="4">
+                <div class="ability-icon">🔥</div>
+                <div class="ability-name">Soulfire</div>
+                <div class="ability-tier">A</div>
+                <button class="ability-settings">⚙️</button>
+                <div class="ability-cooldown">8.9s</div>
+            </div>
+            <div class="ability-slot" data-slot="5">
+                <div class="ability-icon">💀</div>
+                <div class="ability-name">Fear</div>
+                <div class="ability-tier">A</div>
+                <button class="ability-settings">⚙️</button>
+                <div class="ability-cooldown">Ready</div>
+            </div>
+            <div class="ability-slot" data-slot="6">
+                <div class="ability-icon">⚡</div>
+                <div class="ability-name">Stun</div>
+                <div class="ability-tier">A</div>
+                <button class="ability-settings">⚙️</button>
+                <div class="ability-cooldown">Ready</div>
+            </div>
+            <div class="ability-slot" data-slot="7">
+                <div class="ability-icon">🌟</div>
+                <div class="ability-name">Harm</div>
+                <div class="ability-tier">M</div>
+                <button class="ability-settings">⚙️</button>
+                <div class="ability-cooldown">Ready</div>
+            </div>
+            <div class="ability-slot" data-slot="8">
+                <div class="ability-icon">🗡️</div>
+                <div class="ability-name">Stab</div>
+                <div class="ability-tier">A</div>
+                <button class="ability-settings">⚙️</button>
+                <div class="ability-cooldown">3.2s</div>
+            </div>
+        </div>
+
+        <!-- Health Globe (Right) -->
+        <div class="resource-globe health-globe">
+            <div class="globe-fill health-fill" style="height: 90%;"></div>
+            <div class="globe-shine"></div>
+            <div class="globe-text">
+                <span class="globe-value">1350 / 1500</span>
+                <span class="globe-label">HEALTH</span>
             </div>
         </div>
     </footer>
