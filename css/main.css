@@ -288,7 +288,7 @@ body {
 /* Main Container */
 .main-container {
     display: flex;
-    height: calc(100vh - 80px - 85px); /* Subtract top bar and ability bar */
+    height: calc(100vh - 80px - 95px); /* Subtract top bar and ability bar */
     overflow: hidden;
 }
 
