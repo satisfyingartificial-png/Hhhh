@@ -11,12 +11,10 @@ class CombatManager {
 
     init() {
         this.setupZoneSelection();
+        this.setupEnemySelection();
         this.setupCombatControls();
 
-        // Start auto-combat if enabled
-        if (this.player.autoCombatEnabled) {
-            this.startCombat();
-        }
+        // Don't auto-start combat - wait for user to select enemy
     }
 
     // Setup zone selection
@@ -42,12 +40,121 @@ class CombatManager {
         const zoneName = zoneElement.querySelector('.zone-name').textContent;
         this.player.currentZone = zoneName;
 
-        // Load new enemy for this zone
-        this.loadNewEnemy();
+        // Update enemy grid for this zone
+        this.updateEnemyGrid(zoneName);
+
+        // Update zone name in selection header
+        const zoneNameElement = document.getElementById('selected-zone-name');
+        const zoneDisplay = document.getElementById('current-zone-display');
+
+        if (zoneNameElement) {
+            zoneNameElement.textContent = zoneName;
+        }
+
+        if (zoneDisplay) {
+            zoneDisplay.style.display = 'block';
+        }
 
         if (window.utils) {
-            window.utils.showNotification(`Traveling to ${zoneName}...`, 'info');
+            window.utils.showNotification(`Viewing enemies in ${zoneName}`, 'info');
         }
+    }
+
+    // Setup enemy selection
+    setupEnemySelection() {
+        const enemyCards = document.querySelectorAll('.enemy-card');
+
+        enemyCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const enemyType = card.getAttribute('data-enemy');
+                this.selectEnemy(enemyType, card);
+            });
+        });
+
+        // Setup flee button
+        const fleeBtn = document.querySelector('.btn-flee');
+        if (fleeBtn) {
+            fleeBtn.addEventListener('click', () => {
+                this.fleeFromCombat();
+            });
+        }
+    }
+
+    // Select an enemy to fight
+    selectEnemy(enemyType, cardElement) {
+        // Get enemy data from card
+        const enemyName = cardElement.querySelector('.enemy-card-name').textContent;
+        const enemyLevelText = cardElement.querySelector('.enemy-card-level').textContent;
+        const enemyLevel = parseInt(enemyLevelText.replace(/[^\d]/g, ''));
+        const isElite = cardElement.classList.contains('elite-enemy');
+
+        // Generate enemy
+        this.currentEnemy = {
+            name: enemyName,
+            level: enemyLevel,
+            maxHp: enemyLevel * 200 * (isElite ? 1.5 : 1),
+            currentHp: enemyLevel * 200 * (isElite ? 1.5 : 1),
+            attack: enemyLevel * 10,
+            isElite: isElite,
+            xp: enemyLevel * 50 * (isElite ? 2 : 1),
+            combatDuration: 0
+        };
+
+        // Hide enemy selection, show combat
+        this.showCombatView();
+
+        // Start combat if auto-combat is enabled
+        if (this.player.autoCombatEnabled) {
+            this.startCombat();
+        }
+
+        if (window.utils) {
+            window.utils.showNotification(`Engaging ${enemyName}!`, 'info');
+        }
+    }
+
+    // Flee from combat
+    fleeFromCombat() {
+        this.stopCombat();
+
+        // Reset player health/power
+        this.player.currentHp = this.player.maxHp;
+        this.player.currentPower = this.player.maxPower;
+
+        // Show enemy selection, hide combat
+        this.showEnemySelection();
+
+        if (window.utils) {
+            window.utils.showNotification('Fled from combat', 'warning');
+        }
+    }
+
+    // Show combat view
+    showCombatView() {
+        const selectionBox = document.querySelector('.enemy-selection-box');
+        const combatBox = document.querySelector('.current-combat-box');
+
+        if (selectionBox) selectionBox.style.display = 'none';
+        if (combatBox) combatBox.style.display = 'block';
+
+        this.updateEnemyDisplay();
+    }
+
+    // Show enemy selection view
+    showEnemySelection() {
+        const selectionBox = document.querySelector('.enemy-selection-box');
+        const combatBox = document.querySelector('.current-combat-box');
+
+        if (selectionBox) selectionBox.style.display = 'block';
+        if (combatBox) combatBox.style.display = 'none';
+    }
+
+    // Update enemy grid based on zone
+    updateEnemyGrid(zoneName) {
+        // This would dynamically generate enemies based on zone
+        // For now, we'll keep the existing static grid
+        // TODO: Generate enemy cards dynamically based on zone data
+        console.log(`Updating enemy grid for ${zoneName}`);
     }
 
     // Setup combat controls
@@ -298,16 +405,27 @@ class CombatManager {
     enemyDied() {
         console.log('Enemy defeated!');
 
+        // Stop combat
+        this.stopCombat();
+
         // Award XP
         this.player.experience += this.currentEnemy.xp;
 
         // Generate loot
         this.generateLoot();
 
-        // Load new enemy
+        if (window.utils) {
+            window.utils.showNotification(`Defeated ${this.currentEnemy.name}! +${this.currentEnemy.xp} XP`, 'success');
+        }
+
+        // Return to enemy selection after delay
         setTimeout(() => {
-            this.loadNewEnemy();
-        }, 500);
+            this.showEnemySelection();
+
+            // Reset player health/power
+            this.player.currentHp = this.player.maxHp;
+            this.player.currentPower = this.player.maxPower;
+        }, 1500);
     }
 
     // Player died
@@ -320,14 +438,12 @@ class CombatManager {
         this.player.currentPower = this.player.maxPower;
 
         if (window.utils) {
-            window.utils.showNotification('You have been defeated! Respawning...', 'danger');
+            window.utils.showNotification('You have been defeated! Returning to enemy selection...', 'danger');
         }
 
-        // Restart combat after delay
+        // Return to enemy selection after delay
         setTimeout(() => {
-            if (this.player.autoCombatEnabled) {
-                this.startCombat();
-            }
+            this.showEnemySelection();
         }, 2000);
     }
 

@@ -193,8 +193,8 @@
 
         <!-- Main Content Area -->
         <main class="main-content">
-            <!-- Combat View (default) -->
-            <div id="combat-view" class="view-container active">
+            <!-- Combat View -->
+            <div id="combat-view" class="view-container">
                 <div class="view-header">
                     <div class="tab-container">
                         <button class="tab active" data-tab="combat-zones">Combat Zones</button>
@@ -219,10 +219,9 @@
                                 <span class="zone-name">Desert Zone</span>
                                 <span class="zone-level">Lv.20-30</span>
                             </div>
-                            <div class="zone-item active">
+                            <div class="zone-item">
                                 <span class="zone-name">Cave Zone</span>
                                 <span class="zone-level">Lv.30-40</span>
-                                <span class="zone-indicator">◀</span>
                             </div>
                             <div class="zone-item">
                                 <span class="zone-name">Mountain Zone</span>
@@ -259,8 +258,52 @@
 
                     <!-- Right Panel - Combat Display -->
                     <div class="combat-right-panel">
-                        <!-- Current Combat Status -->
-                        <div class="current-combat-box">
+                        <!-- Enemy Selection Grid (shown before combat) -->
+                        <div class="enemy-selection-box">
+                            <div class="selection-header">
+                                <h3>Select an Enemy to Fight</h3>
+                                <p class="zone-description">First select a zone, then choose an enemy to fight</p>
+                                <p class="zone-description" id="current-zone-display" style="display: none;">Fighting in: <span id="selected-zone-name"></span></p>
+                            </div>
+                            <div class="enemy-grid">
+                                <div class="enemy-card" data-enemy="orc-warrior">
+                                    <div class="enemy-card-sprite">👹</div>
+                                    <div class="enemy-card-name">Orc Warrior</div>
+                                    <div class="enemy-card-level">Lv.40</div>
+                                </div>
+                                <div class="enemy-card" data-enemy="goblin-shaman">
+                                    <div class="enemy-card-sprite">🧙</div>
+                                    <div class="enemy-card-name">Goblin Shaman</div>
+                                    <div class="enemy-card-level">Lv.38</div>
+                                </div>
+                                <div class="enemy-card" data-enemy="cave-troll">
+                                    <div class="enemy-card-sprite">🦍</div>
+                                    <div class="enemy-card-name">Cave Troll</div>
+                                    <div class="enemy-card-level">Lv.42</div>
+                                </div>
+                                <div class="enemy-card elite-enemy" data-enemy="stone-golem">
+                                    <div class="enemy-card-sprite">🗿</div>
+                                    <div class="enemy-card-name">Stone Golem</div>
+                                    <div class="enemy-card-level">Lv.45 ⭐</div>
+                                </div>
+                                <div class="enemy-card" data-enemy="shadow-bat">
+                                    <div class="enemy-card-sprite">🦇</div>
+                                    <div class="enemy-card-name">Shadow Bat</div>
+                                    <div class="enemy-card-level">Lv.37</div>
+                                </div>
+                                <div class="enemy-card" data-enemy="crystal-spider">
+                                    <div class="enemy-card-sprite">🕷️</div>
+                                    <div class="enemy-card-name">Crystal Spider</div>
+                                    <div class="enemy-card-level">Lv.39</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Current Combat Status (hidden initially) -->
+                        <div class="current-combat-box" style="display: none;">
+                            <div class="combat-controls">
+                                <button class="btn-flee">⬅️ Back to Enemy Selection</button>
+                            </div>
                             <div class="enemy-display">
                                 <div class="enemy-sprite">
                                     <span class="sprite-icon">👹</span>
@@ -271,8 +314,8 @@
                                 </div>
                                 <div class="enemy-health-bar">
                                     <div class="health-bar">
-                                        <div class="health-fill" style="width: 84.5%"></div>
-                                        <span class="health-text">8,450 / 10,000</span>
+                                        <div class="health-fill" style="width: 100%"></div>
+                                        <span class="health-text">10,000 / 10,000</span>
                                     </div>
                                 </div>
                                 <div class="enemy-info">
@@ -347,7 +390,7 @@
             </div>
 
             <!-- Character Sheet View -->
-            <div id="character-sheet-view" class="view-container">
+            <div id="character-sheet-view" class="view-container active">
                 <div class="view-header">
                     <h2>CHARACTER SHEET</h2>
                 </div>
