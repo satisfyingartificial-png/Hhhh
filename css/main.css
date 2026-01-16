@@ -63,9 +63,14 @@ body {
     background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #0f0f1e 100%);
     background-attachment: fixed;
     color: var(--text-primary);
-    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
     height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
 }
+
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
@@ -287,8 +292,9 @@ body {
 
 /* Main Container */
 .main-container {
+    flex: 1;
+    min-height: 0;
     display: flex;
-    height: calc(100vh - 80px - 95px); /* Subtract top bar and ability bar */
     overflow: hidden;
 }
 
