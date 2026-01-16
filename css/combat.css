@@ -20,9 +20,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
-    overflow: hidden;
     min-width: 0;
-    min-height: 0;
 }
 
 /* Zone List */
@@ -386,11 +384,10 @@
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    flex: 1;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    min-height: 0;
+    overflow-y: auto;
 }
 
 .selection-header {
@@ -418,13 +415,11 @@
 
 .enemy-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: minmax(180px, auto);
     gap: var(--spacing-lg);
-    overflow-y: auto;
+    padding: var(--spacing-sm);
     flex: 1 1 auto;
-    align-content: start;
-    min-height: 300px;
-    height: 100%;
 }
 
 .enemy-card {
@@ -435,11 +430,11 @@
     text-align: center;
     cursor: pointer;
     transition: all var(--transition-fast);
-    position: relative;
-    min-height: 150px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: var(--spacing-sm);
 }
 
 .enemy-card:hover {
