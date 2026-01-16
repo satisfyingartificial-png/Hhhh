@@ -20,8 +20,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
-    overflow-y: auto;
-    max-height: 100%;
+    overflow: hidden;
+    min-width: 0;
 }
 
 /* Zone List */
@@ -136,6 +136,10 @@
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .enemy-display {
@@ -243,6 +247,7 @@
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
+    flex-shrink: 0;
 }
 
 .status-header {
@@ -293,6 +298,7 @@
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
+    flex-shrink: 0;
 }
 
 .loot-header {
@@ -378,11 +384,16 @@
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .selection-header {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    flex-shrink: 0;
 }
 
 .selection-header h3 {
@@ -406,6 +417,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: var(--spacing-lg);
+    overflow-y: auto;
+    flex: 1;
+    align-content: start;
 }
 
 .enemy-card {
