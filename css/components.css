@@ -114,10 +114,9 @@
 
 /* Ability Bar (Bottom Fixed) */
 .ability-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
     background: var(--bg-secondary);
     border-top: 2px solid var(--border-color);
     padding: 4px 8px;
@@ -125,8 +124,8 @@
     z-index: 50;
     display: flex;
     gap: 8px;
-    height: 95px;
-    overflow: hidden;
+    height: auto;
+    overflow: visible;
 }
 
 .consumables-section {
