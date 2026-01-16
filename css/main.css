@@ -63,8 +63,8 @@ body {
     background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #0f0f1e 100%);
     background-attachment: fixed;
     color: var(--text-primary);
-    overflow-x: hidden;
-    min-height: 100vh;
+    overflow: hidden;
+    height: 100vh;
 }
 
 /* Scrollbar Styling */
@@ -368,17 +368,22 @@ body {
 /* Main Content */
 .main-content {
     flex: 1;
-    overflow-y: auto;
+    overflow: hidden;
     background: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
 }
 
 .view-container {
     display: none;
     animation: fadeIn var(--transition-normal);
+    flex: 1;
+    overflow: hidden;
 }
 
 .view-container.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes fadeIn {
@@ -396,12 +401,20 @@ body {
     background: var(--bg-secondary);
     border-bottom: 2px solid var(--border-color);
     padding: var(--spacing-lg);
+    flex-shrink: 0;
 }
 
 .view-header h2 {
     font-size: 24px;
     font-weight: 700;
     color: var(--accent-primary);
+}
+
+.view-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .tab-container {
