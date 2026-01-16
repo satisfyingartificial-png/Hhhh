@@ -48,9 +48,14 @@ class GameUI {
         const viewMap = {
             'character-sheet': 'character-sheet-view',
             'combat': 'combat-view',
-            'dungeons': 'combat-view', // Placeholder
-            'raids': 'combat-view', // Placeholder
-            'party-finder': 'combat-view', // Placeholder
+            'dungeons': 'combat-view', // Navigates to Combat view with Dungeons tab
+            'raids': 'combat-view', // Navigates to Combat view with Raids tab
+            'party-finder': 'combat-view', // Navigates to Combat view with Find Party tab
+            // Gathering Skills
+            'woodcutting': 'woodcutting-view',
+            'mining': 'mining-view',
+            'foraging': 'foraging-view',
+            'fishing': 'fishing-view',
             // Add more view mappings as needed
         };
 

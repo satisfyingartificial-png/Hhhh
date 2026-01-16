@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/combat.css">
     <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/gathering.css">
 </head>
 <body>
     <!-- Top Bar -->
@@ -1098,6 +1099,512 @@
                         <button class="btn-primary">View Equipment</button>
                         <button class="btn-secondary">Allocate Stat Points</button>
                         <button class="btn-secondary">View AA Tree</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Woodcutting View -->
+            <div id="woodcutting-view" class="view-container">
+                <div class="view-header">
+                    <h2>WOODCUTTING</h2>
+                    <div class="skill-progress-header">
+                        <span class="skill-level-display">Level 35 (28,450 / 35,000 XP)</span>
+                    </div>
+                </div>
+                <div class="view-content gathering-layout">
+                    <!-- BACKEND: Populate from /api/gathering/woodcutting/nodes -->
+                    <div class="gathering-left-panel">
+                        <div class="resource-list" data-backend-source="woodcutting-nodes">
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="normal-tree">
+                                <span class="resource-icon">🌳</span>
+                                <span class="resource-name">Normal Tree</span>
+                                <span class="resource-level">Lv.1-10</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="oak-tree">
+                                <span class="resource-icon">🌲</span>
+                                <span class="resource-name">Oak Tree</span>
+                                <span class="resource-level">Lv.10-20</span>
+                            </div>
+                            <div class="resource-item selected" data-backend-action="select-resource" data-resource-id="maple-tree">
+                                <span class="resource-icon">🍁</span>
+                                <span class="resource-name">Maple Tree</span>
+                                <span class="resource-level">Lv.20-35</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="elder-tree">
+                                <span class="resource-icon">🌴</span>
+                                <span class="resource-name">Elder Tree</span>
+                                <span class="resource-level">Lv.40-60</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="ancient-tree">
+                                <span class="resource-icon">🌲</span>
+                                <span class="resource-name">Ancient Tree</span>
+                                <span class="resource-level">Lv.70-99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gathering-right-panel">
+                        <!-- Resource Details -->
+                        <div class="resource-display-card" data-backend-source="selected-resource">
+                            <div class="resource-display-header">
+                                <div class="resource-display-icon">🍁</div>
+                                <div class="resource-display-info">
+                                    <h3 id="selected-resource-name">Maple Tree</h3>
+                                    <span class="resource-requirement">Required Level: 20</span>
+                                </div>
+                            </div>
+
+                            <div class="resource-stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-label">⏱️ Gather Time:</span>
+                                    <span class="stat-value">4.5s per log</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">⭐ Experience:</span>
+                                    <span class="stat-value">150 XP per gather</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">💎 Success Rate:</span>
+                                    <span class="stat-value">85%</span>
+                                </div>
+                            </div>
+
+                            <!-- Gathering Progress -->
+                            <div class="gathering-progress-section" style="display: none;" data-ws-event="gathering-progress">
+                                <div class="progress-label">Gathering...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                                <div class="time-remaining">Time Remaining: 4.5s</div>
+                            </div>
+
+                            <!-- Action Button -->
+                            <button class="btn-primary btn-large" data-backend-action="start-gathering" data-resource-id="maple-tree">
+                                🪓 Start Gathering
+                            </button>
+                            <button class="btn-danger btn-large" style="display: none;" data-backend-action="stop-gathering">
+                                ⛔ Stop Gathering
+                            </button>
+                        </div>
+
+                        <!-- Recent Drops -->
+                        <div class="recent-drops-section">
+                            <h4>Recent Drops</h4>
+                            <div class="drops-list" data-backend-source="recent-drops">
+                                <div class="drop-item">
+                                    <span class="drop-icon">🪵</span>
+                                    <span class="drop-name">Maple Log x3</span>
+                                    <span class="drop-xp">+150 XP</span>
+                                </div>
+                                <div class="drop-item">
+                                    <span class="drop-icon">🪵</span>
+                                    <span class="drop-name">Maple Log x2</span>
+                                    <span class="drop-xp">+150 XP</span>
+                                </div>
+                                <div class="drop-item rare-drop">
+                                    <span class="drop-icon">✨</span>
+                                    <span class="drop-name">Rare Maple Wood x1</span>
+                                    <span class="drop-xp">+300 XP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Session Stats -->
+                        <div class="session-stats-section">
+                            <h4>Session Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-number">245</span>
+                                    <span class="stat-name">Total Gathered</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">12.5K</span>
+                                    <span class="stat-name">XP/Hour</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">45m</span>
+                                    <span class="stat-name">Time Spent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mining View -->
+            <div id="mining-view" class="view-container">
+                <div class="view-header">
+                    <h2>MINING</h2>
+                    <div class="skill-progress-header">
+                        <span class="skill-level-display">Level 42 (38,920 / 45,000 XP)</span>
+                    </div>
+                </div>
+                <div class="view-content gathering-layout">
+                    <!-- BACKEND: Populate from /api/gathering/mining/nodes -->
+                    <div class="gathering-left-panel">
+                        <div class="resource-list" data-backend-source="mining-nodes">
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="copper-ore">
+                                <span class="resource-icon">🪨</span>
+                                <span class="resource-name">Copper Ore</span>
+                                <span class="resource-level">Lv.1-10</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="iron-ore">
+                                <span class="resource-icon">⛏️</span>
+                                <span class="resource-name">Iron Ore</span>
+                                <span class="resource-level">Lv.10-25</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="silver-ore">
+                                <span class="resource-icon">🪙</span>
+                                <span class="resource-name">Silver Ore</span>
+                                <span class="resource-level">Lv.25-40</span>
+                            </div>
+                            <div class="resource-item selected" data-backend-action="select-resource" data-resource-id="gold-ore">
+                                <span class="resource-icon">🥇</span>
+                                <span class="resource-name">Gold Ore</span>
+                                <span class="resource-level">Lv.40-60</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="mithril-ore">
+                                <span class="resource-icon">💎</span>
+                                <span class="resource-name">Mithril Ore</span>
+                                <span class="resource-level">Lv.60-80</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="adamantite-ore">
+                                <span class="resource-icon">💠</span>
+                                <span class="resource-name">Adamantite Ore</span>
+                                <span class="resource-level">Lv.80-99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gathering-right-panel">
+                        <div class="resource-display-card" data-backend-source="selected-resource">
+                            <div class="resource-display-header">
+                                <div class="resource-display-icon">🥇</div>
+                                <div class="resource-display-info">
+                                    <h3>Gold Ore</h3>
+                                    <span class="resource-requirement">Required Level: 40</span>
+                                </div>
+                            </div>
+
+                            <div class="resource-stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-label">⏱️ Gather Time:</span>
+                                    <span class="stat-value">5.0s per ore</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">⭐ Experience:</span>
+                                    <span class="stat-value">250 XP per gather</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">💎 Success Rate:</span>
+                                    <span class="stat-value">90%</span>
+                                </div>
+                            </div>
+
+                            <div class="gathering-progress-section" style="display: none;" data-ws-event="gathering-progress">
+                                <div class="progress-label">Mining...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                                <div class="time-remaining">Time Remaining: 5.0s</div>
+                            </div>
+
+                            <button class="btn-primary btn-large" data-backend-action="start-gathering" data-resource-id="gold-ore">
+                                ⛏️ Start Mining
+                            </button>
+                            <button class="btn-danger btn-large" style="display: none;" data-backend-action="stop-gathering">
+                                ⛔ Stop Mining
+                            </button>
+                        </div>
+
+                        <div class="recent-drops-section">
+                            <h4>Recent Drops</h4>
+                            <div class="drops-list" data-backend-source="recent-drops">
+                                <div class="drop-item">
+                                    <span class="drop-icon">🥇</span>
+                                    <span class="drop-name">Gold Ore x2</span>
+                                    <span class="drop-xp">+250 XP</span>
+                                </div>
+                                <div class="drop-item">
+                                    <span class="drop-icon">🥇</span>
+                                    <span class="drop-name">Gold Ore x3</span>
+                                    <span class="drop-xp">+250 XP</span>
+                                </div>
+                                <div class="drop-item rare-drop">
+                                    <span class="drop-icon">💎</span>
+                                    <span class="drop-name">Gold Gem x1</span>
+                                    <span class="drop-xp">+500 XP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="session-stats-section">
+                            <h4>Session Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-number">182</span>
+                                    <span class="stat-name">Total Gathered</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">15.2K</span>
+                                    <span class="stat-name">XP/Hour</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">32m</span>
+                                    <span class="stat-name">Time Spent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Foraging View -->
+            <div id="foraging-view" class="view-container">
+                <div class="view-header">
+                    <h2>FORAGING</h2>
+                    <div class="skill-progress-header">
+                        <span class="skill-level-display">Level 28 (15,680 / 30,000 XP)</span>
+                    </div>
+                </div>
+                <div class="view-content gathering-layout">
+                    <!-- BACKEND: Populate from /api/gathering/foraging/nodes -->
+                    <div class="gathering-left-panel">
+                        <div class="resource-list" data-backend-source="foraging-nodes">
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="common-herbs">
+                                <span class="resource-icon">🌿</span>
+                                <span class="resource-name">Common Herbs</span>
+                                <span class="resource-level">Lv.1-10</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="wildflowers">
+                                <span class="resource-icon">🌸</span>
+                                <span class="resource-name">Wildflowers</span>
+                                <span class="resource-level">Lv.10-20</span>
+                            </div>
+                            <div class="resource-item selected" data-backend-action="select-resource" data-resource-id="medicinal-herbs">
+                                <span class="resource-icon">🌺</span>
+                                <span class="resource-name">Medicinal Herbs</span>
+                                <span class="resource-level">Lv.20-35</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="rare-plants">
+                                <span class="resource-icon">🪴</span>
+                                <span class="resource-name">Rare Plants</span>
+                                <span class="resource-level">Lv.40-60</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="ancient-herbs">
+                                <span class="resource-icon">🍀</span>
+                                <span class="resource-name">Ancient Herbs</span>
+                                <span class="resource-level">Lv.70-99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gathering-right-panel">
+                        <div class="resource-display-card" data-backend-source="selected-resource">
+                            <div class="resource-display-header">
+                                <div class="resource-display-icon">🌺</div>
+                                <div class="resource-display-info">
+                                    <h3>Medicinal Herbs</h3>
+                                    <span class="resource-requirement">Required Level: 20</span>
+                                </div>
+                            </div>
+
+                            <div class="resource-stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-label">⏱️ Gather Time:</span>
+                                    <span class="stat-value">3.5s per herb</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">⭐ Experience:</span>
+                                    <span class="stat-value">120 XP per gather</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">💎 Success Rate:</span>
+                                    <span class="stat-value">80%</span>
+                                </div>
+                            </div>
+
+                            <div class="gathering-progress-section" style="display: none;" data-ws-event="gathering-progress">
+                                <div class="progress-label">Foraging...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                                <div class="time-remaining">Time Remaining: 3.5s</div>
+                            </div>
+
+                            <button class="btn-primary btn-large" data-backend-action="start-gathering" data-resource-id="medicinal-herbs">
+                                🌿 Start Foraging
+                            </button>
+                            <button class="btn-danger btn-large" style="display: none;" data-backend-action="stop-gathering">
+                                ⛔ Stop Foraging
+                            </button>
+                        </div>
+
+                        <div class="recent-drops-section">
+                            <h4>Recent Drops</h4>
+                            <div class="drops-list" data-backend-source="recent-drops">
+                                <div class="drop-item">
+                                    <span class="drop-icon">🌺</span>
+                                    <span class="drop-name">Medicinal Herb x4</span>
+                                    <span class="drop-xp">+120 XP</span>
+                                </div>
+                                <div class="drop-item">
+                                    <span class="drop-icon">🌺</span>
+                                    <span class="drop-name">Medicinal Herb x2</span>
+                                    <span class="drop-xp">+120 XP</span>
+                                </div>
+                                <div class="drop-item rare-drop">
+                                    <span class="drop-icon">✨</span>
+                                    <span class="drop-name">Rare Healing Herb x1</span>
+                                    <span class="drop-xp">+240 XP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="session-stats-section">
+                            <h4>Session Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-number">312</span>
+                                    <span class="stat-name">Total Gathered</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">10.8K</span>
+                                    <span class="stat-name">XP/Hour</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">52m</span>
+                                    <span class="stat-name">Time Spent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fishing View -->
+            <div id="fishing-view" class="view-container">
+                <div class="view-header">
+                    <h2>FISHING</h2>
+                    <div class="skill-progress-header">
+                        <span class="skill-level-display">Level 15 (8,250 / 18,000 XP)</span>
+                    </div>
+                </div>
+                <div class="view-content gathering-layout">
+                    <!-- BACKEND: Populate from /api/gathering/fishing/nodes -->
+                    <div class="gathering-left-panel">
+                        <div class="resource-list" data-backend-source="fishing-nodes">
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="pond">
+                                <span class="resource-icon">🪷</span>
+                                <span class="resource-name">Pond</span>
+                                <span class="resource-level">Lv.1-10</span>
+                            </div>
+                            <div class="resource-item selected" data-backend-action="select-resource" data-resource-id="river">
+                                <span class="resource-icon">🌊</span>
+                                <span class="resource-name">River</span>
+                                <span class="resource-level">Lv.10-25</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="lake">
+                                <span class="resource-icon">🏞️</span>
+                                <span class="resource-name">Lake</span>
+                                <span class="resource-level">Lv.25-45</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="ocean">
+                                <span class="resource-icon">🌊</span>
+                                <span class="resource-name">Ocean</span>
+                                <span class="resource-level">Lv.45-70</span>
+                            </div>
+                            <div class="resource-item" data-backend-action="select-resource" data-resource-id="deep-sea">
+                                <span class="resource-icon">🐋</span>
+                                <span class="resource-name">Deep Sea</span>
+                                <span class="resource-level">Lv.70-99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gathering-right-panel">
+                        <div class="resource-display-card" data-backend-source="selected-resource">
+                            <div class="resource-display-header">
+                                <div class="resource-display-icon">🌊</div>
+                                <div class="resource-display-info">
+                                    <h3>River</h3>
+                                    <span class="resource-requirement">Required Level: 10</span>
+                                </div>
+                            </div>
+
+                            <div class="resource-stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-label">⏱️ Catch Time:</span>
+                                    <span class="stat-value">6.0s per fish</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">⭐ Experience:</span>
+                                    <span class="stat-value">80 XP per catch</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">💎 Success Rate:</span>
+                                    <span class="stat-value">75%</span>
+                                </div>
+                            </div>
+
+                            <div class="gathering-progress-section" style="display: none;" data-ws-event="gathering-progress">
+                                <div class="progress-label">Fishing...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                    <span class="progress-text">0%</span>
+                                </div>
+                                <div class="time-remaining">Time Remaining: 6.0s</div>
+                            </div>
+
+                            <button class="btn-primary btn-large" data-backend-action="start-gathering" data-resource-id="river">
+                                🎣 Start Fishing
+                            </button>
+                            <button class="btn-danger btn-large" style="display: none;" data-backend-action="stop-gathering">
+                                ⛔ Stop Fishing
+                            </button>
+                        </div>
+
+                        <div class="recent-drops-section">
+                            <h4>Recent Catches</h4>
+                            <div class="drops-list" data-backend-source="recent-drops">
+                                <div class="drop-item">
+                                    <span class="drop-icon">🐟</span>
+                                    <span class="drop-name">Trout x2</span>
+                                    <span class="drop-xp">+80 XP</span>
+                                </div>
+                                <div class="drop-item">
+                                    <span class="drop-icon">🐟</span>
+                                    <span class="drop-name">Salmon x1</span>
+                                    <span class="drop-xp">+80 XP</span>
+                                </div>
+                                <div class="drop-item rare-drop">
+                                    <span class="drop-icon">🐠</span>
+                                    <span class="drop-name">Rare Golden Fish x1</span>
+                                    <span class="drop-xp">+160 XP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="session-stats-section">
+                            <h4>Session Statistics</h4>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-number">96</span>
+                                    <span class="stat-name">Total Caught</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">7.2K</span>
+                                    <span class="stat-name">XP/Hour</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">28m</span>
+                                    <span class="stat-name">Time Spent</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
