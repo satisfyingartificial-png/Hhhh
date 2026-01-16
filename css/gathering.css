@@ -5,6 +5,7 @@
 /* Main Gathering Layout */
 .gathering-layout {
     display: flex;
+    flex-direction: row;
     gap: var(--spacing-lg);
     flex: 1;
     min-height: 0;

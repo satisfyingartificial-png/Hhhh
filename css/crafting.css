@@ -6,6 +6,7 @@
 /* Main Crafting Layout - Similar to Gathering */
 .crafting-layout {
     display: flex;
+    flex-direction: row;
     gap: var(--spacing-lg);
     flex: 1;
     min-height: 0;
