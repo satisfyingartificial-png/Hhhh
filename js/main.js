@@ -88,7 +88,18 @@ class GameUI {
 
     switchTab(tabName) {
         this.currentTab = tabName;
-        // Tab content switching logic can be added here
+
+        // Hide all tab content
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+
+        // Show the selected tab content
+        const targetContent = document.querySelector(`[data-tab-content="${tabName}"]`);
+        if (targetContent) {
+            targetContent.classList.add('active');
+        }
+
         console.log(`Switched to tab: ${tabName}`);
     }
 
@@ -183,6 +194,18 @@ class Utils {
             notification.style.animation = 'slideOut 0.3s ease';
             setTimeout(() => notification.remove(), 300);
         }, 3000);
+    }
+}
+
+// Helper function to switch to Find Party tab (used by buttons in dungeons/raids/party views)
+function switchToFindPartyTab() {
+    if (window.gameUI) {
+        // Switch to find-party tab
+        const findPartyTab = document.querySelector('.tab[data-tab="find-party"]');
+        if (findPartyTab) {
+            window.gameUI.switchTab('find-party');
+            window.gameUI.setActiveTab(findPartyTab);
+        }
     }
 }
 

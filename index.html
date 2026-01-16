@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/combat.css">
+    <link rel="stylesheet" href="css/tabs.css">
 </head>
 <body>
     <!-- Top Bar -->
@@ -193,9 +194,12 @@
                     </div>
                 </div>
 
-                <div class="view-content combat-layout">
-                    <!-- Left Panel - Zone Selection -->
-                    <div class="combat-left-panel">
+                <div class="view-content">
+                    <!-- Combat Zones Tab Content -->
+                    <div class="tab-content active" data-tab-content="combat-zones">
+                        <div class="combat-layout">
+                            <!-- Left Panel - Zone Selection -->
+                            <div class="combat-left-panel">
                         <div class="zone-list">
                             <div class="zone-item">
                                 <span class="zone-name">Starter Zone</span>
@@ -375,7 +379,596 @@
                             </div>
                             </div>
                         </div>
+                        </div>
                     </div>
+                    <!-- End Combat Zones Tab -->
+
+                    <!-- Dungeons Tab Content -->
+                    <div class="tab-content" data-tab-content="dungeons">
+                        <div class="combat-layout">
+                            <!-- BACKEND: Populate from /api/dungeons -->
+                            <div class="combat-left-panel">
+                                <div id="dungeon-list" class="zone-list" data-backend-source="dungeons-list">
+                                    <div class="zone-item" data-backend-action="select-dungeon" data-dungeon-id="sunken-temple">
+                                        <span class="zone-name">Sunken Temple</span>
+                                        <span class="zone-level">Lv.15-20</span>
+                                    </div>
+                                    <div class="zone-item" data-backend-action="select-dungeon" data-dungeon-id="crystal-caverns">
+                                        <span class="zone-name">Crystal Caverns</span>
+                                        <span class="zone-level">Lv.25-30</span>
+                                    </div>
+                                    <div class="zone-item" data-backend-action="select-dungeon" data-dungeon-id="shadow-fortress">
+                                        <span class="zone-name">Shadow Fortress</span>
+                                        <span class="zone-level">Lv.40-45</span>
+                                    </div>
+                                    <div class="zone-item" data-backend-action="select-dungeon" data-dungeon-id="flame-citadel">
+                                        <span class="zone-name">Flame Citadel</span>
+                                        <span class="zone-level">Lv.55-60</span>
+                                    </div>
+                                    <div class="zone-item" data-backend-action="select-dungeon" data-dungeon-id="void-sanctum">
+                                        <span class="zone-name">Void Sanctum</span>
+                                        <span class="zone-level">Lv.75-80</span>
+                                    </div>
+                                    <div class="zone-item" data-backend-action="select-dungeon" data-dungeon-id="endgame-dungeon">
+                                        <span class="zone-name">Endgame Dungeon</span>
+                                        <span class="zone-level">Lv.95-99</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="combat-right-panel">
+                                <div class="dungeon-details-box">
+                                    <div class="selection-header">
+                                        <h3>Select a Dungeon</h3>
+                                        <p class="zone-description">Choose a dungeon to view details and requirements</p>
+                                    </div>
+
+                                    <div id="dungeon-details" class="content-details-card" style="display: none;">
+                                        <div class="content-details-header">
+                                            <h4 id="dungeon-name">Sunken Temple</h4>
+                                            <span id="dungeon-level" class="content-level">Lv.15-20</span>
+                                        </div>
+
+                                        <div class="content-info-grid">
+                                            <div class="info-item">
+                                                <span class="info-label">👥 Party Size:</span>
+                                                <span class="info-value">4 Players</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">🛡️ Composition:</span>
+                                                <span class="info-value">1 Tank, 1 Healer, 2 DPS</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">⏱️ Est. Time:</span>
+                                                <span class="info-value">25-35 minutes</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">⚔️ Difficulty:</span>
+                                                <span class="info-value difficulty-normal">Normal</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="boss-list">
+                                            <div class="section-label">BOSSES:</div>
+                                            <div class="boss-item">
+                                                <span class="boss-icon">💀</span>
+                                                <span class="boss-name">Corrupted Priest</span>
+                                            </div>
+                                            <div class="boss-item">
+                                                <span class="boss-icon">👻</span>
+                                                <span class="boss-name">Ancient Guardian</span>
+                                            </div>
+                                            <div class="boss-item">
+                                                <span class="boss-icon">🐉</span>
+                                                <span class="boss-name">Hydra</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="loot-preview">
+                                            <div class="section-label">NOTABLE LOOT:</div>
+                                            <div class="loot-items">
+                                                <span class="loot-badge rare">⚔️ Rare Weapons</span>
+                                                <span class="loot-badge rare">🛡️ Rare Armor</span>
+                                                <span class="loot-badge epic">📖 Adept Tomes</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-actions">
+                                            <button class="btn-primary" onclick="switchToFindPartyTab()">👥 Find Group</button>
+                                            <button class="btn-primary" data-backend-action="enter-dungeon" data-dungeon-id="" disabled>🚪 Enter Dungeon</button>
+                                        </div>
+
+                                        <div class="requirement-warning">
+                                            <span class="warning-icon">⚠️</span>
+                                            <span class="warning-text">Must be in a party of 4 to enter</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Dungeons Tab -->
+
+                    <!-- Raids Tab Content -->
+                    <div class="tab-content" data-tab-content="raids">
+                        <div class="combat-layout">
+                            <!-- BACKEND: Populate from /api/raids -->
+                            <div class="combat-left-panel">
+                                <div id="raid-list" class="zone-list" data-backend-source="raids-list">
+                                    <div class="zone-item" data-backend-action="select-raid" data-raid-id="temple-ancients">
+                                        <span class="zone-name">Temple of the Ancients</span>
+                                        <span class="zone-level">Lv.50+</span>
+                                    </div>
+                                    <div class="zone-item" data-backend-action="select-raid" data-raid-id="dragons-ascent">
+                                        <span class="zone-name">Dragon's Ascent</span>
+                                        <span class="zone-level">Lv.65+</span>
+                                    </div>
+                                    <div class="zone-item" data-backend-action="select-raid" data-raid-id="shadowlord-throne">
+                                        <span class="zone-name">Shadowlord's Throne</span>
+                                        <span class="zone-level">Lv.80+</span>
+                                    </div>
+                                    <div class="zone-item" data-backend-action="select-raid" data-raid-id="void-nexus">
+                                        <span class="zone-name">The Void Nexus</span>
+                                        <span class="zone-level">Lv.95+</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="combat-right-panel">
+                                <div class="raid-details-box">
+                                    <div class="selection-header">
+                                        <h3>Select a Raid</h3>
+                                        <p class="zone-description">Choose a raid to view details and check lockout status</p>
+                                    </div>
+
+                                    <div id="raid-details" class="content-details-card" style="display: none;">
+                                        <div class="content-details-header">
+                                            <h4 id="raid-name">Temple of the Ancients</h4>
+                                            <span id="raid-level" class="content-level">Lv.50+</span>
+                                        </div>
+
+                                        <div class="lockout-status" data-backend-source="raid-lockout" data-raid-id="">
+                                            <div class="lockout-info">
+                                                <span class="lockout-label">Weekly Lockout:</span>
+                                                <span class="lockout-value available">Available</span>
+                                            </div>
+                                            <div class="lockout-progress">
+                                                <span class="progress-text">Bosses Defeated: 0/3</span>
+                                                <div class="progress-bar-small">
+                                                    <div class="progress-fill" style="width: 0%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="lockout-timer">
+                                                <span class="timer-label">⏰ Resets in:</span>
+                                                <span class="timer-value">5d 12h 34m</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-info-grid">
+                                            <div class="info-item">
+                                                <span class="info-label">👥 Raid Size:</span>
+                                                <span class="info-value">8 Players</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">🛡️ Composition:</span>
+                                                <span class="info-value">2 Tanks, 2 Healers, 4 DPS</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">⏱️ Est. Time:</span>
+                                                <span class="info-value">1-2 hours</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">⚔️ Difficulty:</span>
+                                                <span class="info-value difficulty-hard">Hard</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="boss-list">
+                                            <div class="section-label">RAID BOSSES:</div>
+                                            <div class="boss-item">
+                                                <span class="boss-icon">⚔️</span>
+                                                <span class="boss-name">The Four Champions</span>
+                                            </div>
+                                            <div class="boss-item">
+                                                <span class="boss-icon">🧙</span>
+                                                <span class="boss-name">Archmage Zul'jin</span>
+                                            </div>
+                                            <div class="boss-item">
+                                                <span class="boss-icon">👹</span>
+                                                <span class="boss-name">Ancient One</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="loot-preview">
+                                            <div class="section-label">EPIC/LEGENDARY LOOT:</div>
+                                            <div class="loot-items">
+                                                <span class="loot-badge epic">⚔️ Epic Weapons</span>
+                                                <span class="loot-badge epic">🛡️ Epic Armor Sets</span>
+                                                <span class="loot-badge legendary">📖 Master Tomes</span>
+                                                <span class="loot-badge legendary">💎 Legendary Items</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-actions">
+                                            <button class="btn-primary" onclick="switchToFindPartyTab()">👥 Find Raid Group</button>
+                                            <button class="btn-primary" data-backend-action="enter-raid" data-raid-id="" disabled>🚪 Enter Raid</button>
+                                        </div>
+
+                                        <div class="requirement-warning">
+                                            <span class="warning-icon">⚠️</span>
+                                            <span class="warning-text">Must be in a raid group of 8 to enter</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Raids Tab -->
+
+                    <!-- Find Party Tab Content -->
+                    <div class="tab-content" data-tab-content="find-party">
+                        <div class="combat-layout">
+                            <div class="combat-left-panel">
+                                <div class="party-finder-filters">
+                                    <h4>Queue Filters</h4>
+
+                                    <div class="filter-section">
+                                        <div class="section-label">YOUR ROLE:</div>
+                                        <div class="role-selector">
+                                            <label class="role-checkbox">
+                                                <input type="checkbox" value="tank">
+                                                <span class="role-icon">🛡️</span>
+                                                <span class="role-label">Tank</span>
+                                            </label>
+                                            <label class="role-checkbox">
+                                                <input type="checkbox" value="healer">
+                                                <span class="role-icon">❤️</span>
+                                                <span class="role-label">Healer</span>
+                                            </label>
+                                            <label class="role-checkbox">
+                                                <input type="checkbox" checked value="dps">
+                                                <span class="role-icon">⚔️</span>
+                                                <span class="role-label">DPS</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="filter-section">
+                                        <div class="section-label">CONTENT TYPE:</div>
+                                        <select class="filter-dropdown">
+                                            <option value="dungeons">Dungeons</option>
+                                            <option value="raids">Raids</option>
+                                            <option value="world-bosses">World Bosses</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="filter-section">
+                                        <div class="section-label">LEVEL RANGE:</div>
+                                        <div class="level-range">
+                                            <input type="number" class="level-input" placeholder="Min" value="40">
+                                            <span>-</span>
+                                            <input type="number" class="level-input" placeholder="Max" value="50">
+                                        </div>
+                                    </div>
+
+                                    <button class="btn-primary btn-full" data-backend-action="start-queue">
+                                        🔍 Start Queue
+                                    </button>
+
+                                    <div class="queue-status" style="display: none;">
+                                        <div class="status-indicator">
+                                            <div class="spinner"></div>
+                                            <span class="status-text">In Queue...</span>
+                                        </div>
+                                        <div class="queue-info">
+                                            <span>Position: <strong>15</strong></span>
+                                            <span>Est. Wait: <strong>3m 45s</strong></span>
+                                        </div>
+                                        <button class="btn-secondary btn-full">❌ Leave Queue</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="combat-right-panel">
+                                <div class="party-finder-content">
+                                    <!-- Create Group Section -->
+                                    <div class="create-group-section">
+                                        <h4>Create Your Own Group</h4>
+                                        <div class="create-group-form">
+                                            <input type="text" class="form-input" placeholder="Group Name" maxlength="30">
+                                            <select class="form-select">
+                                                <option>Sunken Temple</option>
+                                                <option>Crystal Caverns</option>
+                                                <option>Shadow Fortress</option>
+                                            </select>
+                                            <select class="form-select">
+                                                <option>Normal</option>
+                                                <option>Hard</option>
+                                                <option>Expert</option>
+                                            </select>
+                                            <div class="role-requirements">
+                                                <div class="section-label">ROLES NEEDED:</div>
+                                                <div class="role-counters">
+                                                    <div class="role-counter">
+                                                        <span class="role-icon">🛡️</span>
+                                                        <input type="number" min="0" max="2" value="1" class="counter-input">
+                                                    </div>
+                                                    <div class="role-counter">
+                                                        <span class="role-icon">❤️</span>
+                                                        <input type="number" min="0" max="2" value="1" class="counter-input">
+                                                    </div>
+                                                    <div class="role-counter">
+                                                        <span class="role-icon">⚔️</span>
+                                                        <input type="number" min="0" max="6" value="2" class="counter-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn-primary btn-full" data-backend-action="create-party-listing">
+                                                ✨ Create Listing
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Open Groups List -->
+                                    <div class="open-groups-section">
+                                        <h4>Open Groups</h4>
+                                        <div id="party-listings" class="party-listings" data-backend-source="party-finder">
+                                            <div class="party-listing-card" data-listing-id="1">
+                                                <div class="listing-header">
+                                                    <span class="listing-name">Sunken Temple Quick Run</span>
+                                                    <span class="listing-level">Lv.18-22</span>
+                                                </div>
+                                                <div class="listing-content">
+                                                    <span class="listing-leader">👑 TankMaster</span>
+                                                    <span class="listing-type">📍 Sunken Temple</span>
+                                                </div>
+                                                <div class="listing-roles">
+                                                    <span class="role-needed">🛡️ 1/1</span>
+                                                    <span class="role-needed missing">❤️ 0/1</span>
+                                                    <span class="role-needed">⚔️ 2/2</span>
+                                                </div>
+                                                <button class="btn-secondary btn-small" data-backend-action="request-join-party" data-listing-id="1">
+                                                    Request Join
+                                                </button>
+                                            </div>
+
+                                            <div class="party-listing-card" data-listing-id="2">
+                                                <div class="listing-header">
+                                                    <span class="listing-name">Crystal Caverns Farm</span>
+                                                    <span class="listing-level">Lv.25-30</span>
+                                                </div>
+                                                <div class="listing-content">
+                                                    <span class="listing-leader">👑 HealerPro</span>
+                                                    <span class="listing-type">📍 Crystal Caverns</span>
+                                                </div>
+                                                <div class="listing-roles">
+                                                    <span class="role-needed missing">🛡️ 0/1</span>
+                                                    <span class="role-needed">❤️ 1/1</span>
+                                                    <span class="role-needed missing">⚔️ 1/2</span>
+                                                </div>
+                                                <button class="btn-secondary btn-small" data-backend-action="request-join-party" data-listing-id="2">
+                                                    Request Join
+                                                </button>
+                                            </div>
+
+                                            <div class="party-listing-card" data-listing-id="3">
+                                                <div class="listing-header">
+                                                    <span class="listing-name">Shadow Fortress Prog</span>
+                                                    <span class="listing-level">Lv.42-45</span>
+                                                </div>
+                                                <div class="listing-content">
+                                                    <span class="listing-leader">👑 EliteDPS</span>
+                                                    <span class="listing-type">📍 Shadow Fortress</span>
+                                                </div>
+                                                <div class="listing-roles">
+                                                    <span class="role-needed">🛡️ 1/1</span>
+                                                    <span class="role-needed">❤️ 1/1</span>
+                                                    <span class="role-needed missing">⚔️ 0/2</span>
+                                                </div>
+                                                <button class="btn-secondary btn-small" data-backend-action="request-join-party" data-listing-id="3">
+                                                    Request Join
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Find Party Tab -->
+
+                    <!-- My Party Tab Content -->
+                    <div class="tab-content" data-tab-content="my-party">
+                        <div class="combat-layout">
+                            <div class="party-management-layout">
+                                <!-- Not in Party State -->
+                                <div id="no-party-state" class="no-party-message">
+                                    <div class="empty-state-icon">👥</div>
+                                    <h3>You are not in a party</h3>
+                                    <p>Join a party from the Find Party tab or create your own group</p>
+                                    <button class="btn-primary" onclick="switchToFindPartyTab()">
+                                        🔍 Find Party
+                                    </button>
+                                </div>
+
+                                <!-- In Party State -->
+                                <div id="party-state" class="party-details-container" style="display: none;" data-backend-source="current-party">
+                                    <div class="party-header">
+                                        <h3>Your Party</h3>
+                                        <div class="party-size">4/4 Players</div>
+                                    </div>
+
+                                    <div id="party-members" class="party-members-list">
+                                        <!-- Party Leader -->
+                                        <div class="party-member-card leader" data-player-id="player1">
+                                            <div class="member-header">
+                                                <span class="member-name">
+                                                    <span class="leader-crown">👑</span>
+                                                    Shadowknight
+                                                    <span class="you-badge">YOU</span>
+                                                </span>
+                                                <span class="member-level">Lv.45</span>
+                                            </div>
+                                            <div class="member-info">
+                                                <span class="member-class">🛡️ Shadowknight</span>
+                                                <span class="member-role role-tank">Tank</span>
+                                            </div>
+                                            <div class="member-stats">
+                                                <div class="stat-bar">
+                                                    <span class="stat-label">❤️ HP:</span>
+                                                    <div class="progress-bar-small" data-ws-event="party-member-stats" data-player-id="player1">
+                                                        <div class="progress-fill health-fill" style="width: 100%"></div>
+                                                        <span class="progress-text">15,000 / 15,000</span>
+                                                    </div>
+                                                </div>
+                                                <div class="stat-bar">
+                                                    <span class="stat-label">💙 Power:</span>
+                                                    <div class="progress-bar-small">
+                                                        <div class="progress-fill power-fill" style="width: 80%"></div>
+                                                        <span class="progress-text">4,000 / 5,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="member-status online">🟢 Online</div>
+                                        </div>
+
+                                        <!-- Party Member 2 -->
+                                        <div class="party-member-card" data-player-id="player2">
+                                            <div class="member-header">
+                                                <span class="member-name">Wisbe</span>
+                                                <span class="member-level">Lv.43</span>
+                                            </div>
+                                            <div class="member-info">
+                                                <span class="member-class">❤️ Mystic</span>
+                                                <span class="member-role role-healer">Healer</span>
+                                            </div>
+                                            <div class="member-stats">
+                                                <div class="stat-bar">
+                                                    <span class="stat-label">❤️ HP:</span>
+                                                    <div class="progress-bar-small">
+                                                        <div class="progress-fill health-fill" style="width: 90%"></div>
+                                                        <span class="progress-text">11,700 / 13,000</span>
+                                                    </div>
+                                                </div>
+                                                <div class="stat-bar">
+                                                    <span class="stat-label">💙 Power:</span>
+                                                    <div class="progress-bar-small">
+                                                        <div class="progress-fill power-fill" style="width: 100%"></div>
+                                                        <span class="progress-text">6,000 / 6,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="member-status online">🟢 Online</div>
+                                            <button class="btn-kick" data-backend-action="kick-member" data-player-id="player2">Kick</button>
+                                        </div>
+
+                                        <!-- Party Member 3 -->
+                                        <div class="party-member-card" data-player-id="player3">
+                                            <div class="member-header">
+                                                <span class="member-name">DarkMage</span>
+                                                <span class="member-level">Lv.44</span>
+                                            </div>
+                                            <div class="member-info">
+                                                <span class="member-class">🔮 Summoner</span>
+                                                <span class="member-role role-dps">DPS</span>
+                                            </div>
+                                            <div class="member-stats">
+                                                <div class="stat-bar">
+                                                    <span class="stat-label">❤️ HP:</span>
+                                                    <div class="progress-bar-small">
+                                                        <div class="progress-fill health-fill" style="width: 75%"></div>
+                                                        <span class="progress-text">9,000 / 12,000</span>
+                                                    </div>
+                                                </div>
+                                                <div class="stat-bar">
+                                                    <span class="stat-label">💙 Power:</span>
+                                                    <div class="progress-bar-small">
+                                                        <div class="progress-fill power-fill" style="width: 60%"></div>
+                                                        <span class="progress-text">3,600 / 6,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="member-status online">🟢 Online</div>
+                                            <button class="btn-kick" data-backend-action="kick-member" data-player-id="player3">Kick</button>
+                                        </div>
+
+                                        <!-- Party Member 4 -->
+                                        <div class="party-member-card" data-player-id="player4">
+                                            <div class="member-header">
+                                                <span class="member-name">StealthBoi</span>
+                                                <span class="member-level">Lv.45</span>
+                                            </div>
+                                            <div class="member-info">
+                                                <span class="member-class">🗡️ Assassin</span>
+                                                <span class="member-role role-dps">DPS</span>
+                                            </div>
+                                            <div class="member-stats">
+                                                <div class="stat-bar">
+                                                    <span class="stat-label">❤️ HP:</span>
+                                                    <div class="progress-bar-small">
+                                                        <div class="progress-fill health-fill" style="width: 100%"></div>
+                                                        <span class="progress-text">11,000 / 11,000</span>
+                                                    </div>
+                                                </div>
+                                                <div class="stat-bar">
+                                                    <span class="stat-label">💙 Power:</span>
+                                                    <div class="progress-bar-small">
+                                                        <div class="progress-fill power-fill" style="width: 45%"></div>
+                                                        <span class="progress-text">2,250 / 5,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="member-status online">🟢 Online</div>
+                                            <button class="btn-kick" data-backend-action="kick-member" data-player-id="player4">Kick</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Party Settings (Leader Only) -->
+                                    <div class="party-settings-section">
+                                        <h4>Party Settings</h4>
+                                        <div class="settings-grid">
+                                            <div class="setting-item">
+                                                <span class="setting-label">Loot Distribution:</span>
+                                                <select class="setting-select" data-backend-action="update-loot-settings">
+                                                    <option value="free-for-all">Free-for-All</option>
+                                                    <option value="round-robin" selected>Round Robin</option>
+                                                    <option value="need-before-greed">Need before Greed</option>
+                                                    <option value="master-looter">Master Looter</option>
+                                                </select>
+                                            </div>
+                                            <div class="setting-item">
+                                                <span class="setting-label">Party Type:</span>
+                                                <select class="setting-select">
+                                                    <option value="public" selected>Public</option>
+                                                    <option value="private">Private</option>
+                                                </select>
+                                            </div>
+                                            <div class="setting-item">
+                                                <span class="setting-label">Difficulty:</span>
+                                                <select class="setting-select">
+                                                    <option value="normal" selected>Normal</option>
+                                                    <option value="hard">Hard</option>
+                                                    <option value="expert">Expert</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Party Actions -->
+                                    <div class="party-actions">
+                                        <button class="btn-secondary" data-backend-action="leave-party">
+                                            🚪 Leave Party
+                                        </button>
+                                        <button class="btn-danger" data-backend-action="disband-party">
+                                            ⛔ Disband Party
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End My Party Tab -->
+
                 </div>
             </div>
 
