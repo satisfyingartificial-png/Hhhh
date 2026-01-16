@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/tabs.css">
     <link rel="stylesheet" href="css/gathering.css">
     <link rel="stylesheet" href="css/crafting.css">
+    <link rel="stylesheet" href="css/social.css">
 </head>
 <body>
     <!-- Top Bar -->
@@ -2577,6 +2578,831 @@
                                 <div class="stat-box">
                                     <span class="stat-number">96%</span>
                                     <span class="stat-name">Success Rate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guild View -->
+            <div id="guild-view" class="view-container">
+                <div class="view-header">
+                    <h2>GUILD</h2>
+                </div>
+                <div class="view-content social-layout">
+                    <!-- BACKEND: Check if player is in guild -->
+                    <div id="in-guild-section" class="guild-main-container" data-backend-source="guild-current">
+                        <!-- Guild Info Card -->
+                        <div class="guild-info-card">
+                            <div class="guild-header">
+                                <div class="guild-emblem">🛡️</div>
+                                <div class="guild-title-info">
+                                    <h3>&lt;Shadow Legion&gt;</h3>
+                                    <div class="guild-meta">
+                                        <span class="guild-level">Level 15</span>
+                                        <span class="guild-members">45 / 50 Members</span>
+                                    </div>
+                                </div>
+                                <button class="btn-danger" data-backend-action="leave-guild">Leave Guild</button>
+                            </div>
+
+                            <!-- Guild Tabs -->
+                            <div class="guild-tabs">
+                                <button class="guild-tab active" data-guild-tab="members">Members</button>
+                                <button class="guild-tab" data-guild-tab="bank">Guild Bank</button>
+                                <button class="guild-tab" data-guild-tab="perks">Perks & Buffs</button>
+                                <button class="guild-tab" data-guild-tab="chat">Guild Chat</button>
+                            </div>
+
+                            <!-- Members Tab -->
+                            <div class="guild-tab-content active" data-guild-tab-content="members">
+                                <div class="members-list" data-backend-source="guild-members">
+                                    <div class="member-item online">
+                                        <span class="member-rank">👑 Guild Master</span>
+                                        <span class="member-name">GuildLeader</span>
+                                        <span class="member-class">Shadowknight</span>
+                                        <span class="member-level">Lv.99</span>
+                                        <span class="member-status online">🟢 Online</span>
+                                        <span class="member-activity">In Raid</span>
+                                    </div>
+                                    <div class="member-item online">
+                                        <span class="member-rank">⭐ Officer</span>
+                                        <span class="member-name">TopOfficer</span>
+                                        <span class="member-class">Cleric</span>
+                                        <span class="member-level">Lv.95</span>
+                                        <span class="member-status online">🟢 Online</span>
+                                        <span class="member-activity">Gathering</span>
+                                    </div>
+                                    <div class="member-item online you">
+                                        <span class="member-rank">Member</span>
+                                        <span class="member-name">Shadowknight (YOU)</span>
+                                        <span class="member-class">Shadowknight</span>
+                                        <span class="member-level">Lv.45</span>
+                                        <span class="member-status online">🟢 Online</span>
+                                        <span class="member-activity">In Guild View</span>
+                                    </div>
+                                    <div class="member-item offline">
+                                        <span class="member-rank">Member</span>
+                                        <span class="member-name">InactiveMember</span>
+                                        <span class="member-class">Wizard</span>
+                                        <span class="member-level">Lv.38</span>
+                                        <span class="member-status offline">🔴 Offline</span>
+                                        <span class="member-activity">Last seen: 2d ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bank Tab -->
+                            <div class="guild-tab-content" data-guild-tab-content="bank">
+                                <div class="guild-bank-container" data-backend-source="guild-bank">
+                                    <div class="bank-header">
+                                        <h4>Guild Bank</h4>
+                                        <div class="bank-gold">Guild Gold: 125,450 🪙</div>
+                                    </div>
+                                    <div class="bank-grid">
+                                        <div class="bank-item">
+                                            <span class="item-icon">⚔️</span>
+                                            <span class="item-name">Mithril Sword x3</span>
+                                            <button class="btn-secondary btn-sm" data-backend-action="withdraw-item" data-item-id="mithril-sword">Withdraw</button>
+                                        </div>
+                                        <div class="bank-item">
+                                            <span class="item-icon">🧪</span>
+                                            <span class="item-name">Health Potion x50</span>
+                                            <button class="btn-secondary btn-sm" data-backend-action="withdraw-item" data-item-id="health-potion">Withdraw</button>
+                                        </div>
+                                        <div class="bank-item">
+                                            <span class="item-icon">🪵</span>
+                                            <span class="item-name">Elder Wood x100</span>
+                                            <button class="btn-secondary btn-sm" data-backend-action="withdraw-item" data-item-id="elder-wood">Withdraw</button>
+                                        </div>
+                                    </div>
+                                    <div class="bank-actions">
+                                        <button class="btn-primary" data-backend-action="open-deposit-modal">Deposit Items</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Perks Tab -->
+                            <div class="guild-tab-content" data-guild-tab-content="perks">
+                                <div class="guild-perks-container">
+                                    <h4>Active Guild Buffs</h4>
+                                    <div class="perks-list">
+                                        <div class="perk-item active">
+                                            <span class="perk-icon">⚔️</span>
+                                            <div class="perk-info">
+                                                <span class="perk-name">Combat Mastery</span>
+                                                <span class="perk-bonus">+5% XP from combat</span>
+                                            </div>
+                                        </div>
+                                        <div class="perk-item active">
+                                            <span class="perk-icon">🪙</span>
+                                            <div class="perk-info">
+                                                <span class="perk-name">Wealthy Guild</span>
+                                                <span class="perk-bonus">+10% Gold from all sources</span>
+                                            </div>
+                                        </div>
+                                        <div class="perk-item locked">
+                                            <span class="perk-icon">🔒</span>
+                                            <div class="perk-info">
+                                                <span class="perk-name">Master Crafters</span>
+                                                <span class="perk-bonus">+5% Crafting success rate</span>
+                                                <span class="perk-requirement">Requires Guild Level 20</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chat Tab -->
+                            <div class="guild-tab-content" data-guild-tab-content="chat">
+                                <div class="guild-chat-container">
+                                    <div class="chat-messages" data-backend-source="guild-chat" data-ws-event="guild-chat">
+                                        <div class="chat-message">
+                                            <span class="chat-timestamp">[14:23]</span>
+                                            <span class="chat-author">GuildLeader:</span>
+                                            <span class="chat-text">Raid tonight at 8pm! Everyone be ready!</span>
+                                        </div>
+                                        <div class="chat-message">
+                                            <span class="chat-timestamp">[14:25]</span>
+                                            <span class="chat-author">TopOfficer:</span>
+                                            <span class="chat-text">I'll be there!</span>
+                                        </div>
+                                        <div class="chat-message system">
+                                            <span class="chat-timestamp">[14:30]</span>
+                                            <span class="chat-text">Shadowknight joined the guild</span>
+                                        </div>
+                                    </div>
+                                    <div class="chat-input-container">
+                                        <input type="text" class="chat-input" placeholder="Type a message..." data-backend-action="send-guild-chat">
+                                        <button class="btn-primary" data-backend-action="send-guild-chat">Send</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Not in Guild Section -->
+                    <div id="no-guild-section" class="guild-browser-container" style="display: none;" data-backend-source="guild-browser">
+                        <h3>Join a Guild</h3>
+                        <div class="guild-search">
+                            <input type="text" placeholder="Search guilds..." class="search-input">
+                            <button class="btn-primary">Search</button>
+                        </div>
+                        <div class="guilds-list">
+                            <div class="guild-listing-item">
+                                <div class="guild-listing-emblem">🛡️</div>
+                                <div class="guild-listing-info">
+                                    <h4>&lt;Shadow Legion&gt;</h4>
+                                    <p class="guild-listing-description">Hardcore raiding guild seeking active members</p>
+                                    <div class="guild-listing-meta">
+                                        <span>Level 15</span>
+                                        <span>45/50 Members</span>
+                                        <span>Min Level: 40</span>
+                                    </div>
+                                </div>
+                                <button class="btn-primary" data-backend-action="request-join-guild" data-guild-id="shadow-legion">Request Join</button>
+                            </div>
+                            <div class="guild-listing-item">
+                                <div class="guild-listing-emblem">⚔️</div>
+                                <div class="guild-listing-info">
+                                    <h4>&lt;Casual Gamers&gt;</h4>
+                                    <p class="guild-listing-description">Friendly guild for casual players. All welcome!</p>
+                                    <div class="guild-listing-meta">
+                                        <span>Level 8</span>
+                                        <span>28/50 Members</span>
+                                        <span>Min Level: 10</span>
+                                    </div>
+                                </div>
+                                <button class="btn-primary" data-backend-action="request-join-guild" data-guild-id="casual-gamers">Request Join</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading Post View -->
+            <div id="trading-view" class="view-container">
+                <div class="view-header">
+                    <h2>TRADING POST</h2>
+                </div>
+                <div class="view-content trading-layout">
+                    <!-- Left Panel - Filters -->
+                    <div class="trading-left-panel">
+                        <div class="trading-filters">
+                            <h4>Filters</h4>
+                            <div class="filter-group">
+                                <label>Category</label>
+                                <select class="filter-select" data-backend-filter="category">
+                                    <option value="all">All Items</option>
+                                    <option value="weapons">Weapons</option>
+                                    <option value="armor">Armor</option>
+                                    <option value="consumables">Consumables</option>
+                                    <option value="materials">Materials</option>
+                                    <option value="tomes">Ability Tomes</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>Rarity</label>
+                                <select class="filter-select" data-backend-filter="rarity">
+                                    <option value="all">All Rarities</option>
+                                    <option value="common">Common</option>
+                                    <option value="uncommon">Uncommon</option>
+                                    <option value="rare">Rare</option>
+                                    <option value="epic">Epic</option>
+                                    <option value="legendary">Legendary</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>Level Range</label>
+                                <input type="number" placeholder="Min" class="filter-input" data-backend-filter="minLevel">
+                                <input type="number" placeholder="Max" class="filter-input" data-backend-filter="maxLevel">
+                            </div>
+                            <div class="filter-group">
+                                <input type="text" placeholder="Search items..." class="search-input" data-backend-filter="search">
+                            </div>
+                            <button class="btn-primary btn-large" data-backend-action="apply-filters">Apply Filters</button>
+                        </div>
+                        <div class="my-listings-section">
+                            <h4>My Listings</h4>
+                            <button class="btn-secondary btn-large" data-backend-action="open-sell-modal">+ Create Listing</button>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel - Listings -->
+                    <div class="trading-right-panel">
+                        <div class="listings-container" data-backend-source="trading-listings">
+                            <div class="listing-item">
+                                <div class="listing-icon rare">⚔️</div>
+                                <div class="listing-info">
+                                    <h4 class="listing-name rare">Iron Sword +2</h4>
+                                    <p class="listing-seller">Seller: WeaponMaster</p>
+                                    <p class="listing-stats">Attack: 45-60 | STR +8</p>
+                                </div>
+                                <div class="listing-price-section">
+                                    <div class="listing-price">2,500 🪙</div>
+                                    <div class="listing-time">23h remaining</div>
+                                    <button class="btn-primary" data-backend-action="buy-item" data-listing-id="iron-sword-1">Buy Now</button>
+                                </div>
+                            </div>
+                            <div class="listing-item">
+                                <div class="listing-icon epic">🛡️</div>
+                                <div class="listing-info">
+                                    <h4 class="listing-name epic">Steel Chestplate</h4>
+                                    <p class="listing-seller">Seller: ArmorSmith</p>
+                                    <p class="listing-stats">Defense: 50 | STA +15</p>
+                                </div>
+                                <div class="listing-price-section">
+                                    <div class="listing-price">5,000 🪙</div>
+                                    <div class="listing-time">12h remaining</div>
+                                    <button class="btn-primary" data-backend-action="buy-item" data-listing-id="steel-chest-1">Buy Now</button>
+                                </div>
+                            </div>
+                            <div class="listing-item">
+                                <div class="listing-icon common">🧪</div>
+                                <div class="listing-info">
+                                    <h4 class="listing-name">Health Potion x20</h4>
+                                    <p class="listing-seller">Seller: PotionMaker</p>
+                                    <p class="listing-stats">Restore 500 HP</p>
+                                </div>
+                                <div class="listing-price-section">
+                                    <div class="listing-price">800 🪙</div>
+                                    <div class="listing-time">6h remaining</div>
+                                    <button class="btn-primary" data-backend-action="buy-item" data-listing-id="health-pot-1">Buy Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mail View -->
+            <div id="mail-view" class="view-container">
+                <div class="view-header">
+                    <h2>MAIL</h2>
+                    <button class="btn-primary" data-backend-action="open-compose-mail">✉️ Compose Mail</button>
+                </div>
+                <div class="view-content mail-layout">
+                    <!-- Left Panel - Inbox List -->
+                    <div class="mail-left-panel">
+                        <div class="mail-list" data-backend-source="mail-inbox">
+                            <div class="mail-item unread selected" data-mail-id="mail-1">
+                                <div class="mail-item-header">
+                                    <span class="mail-from">System</span>
+                                    <span class="mail-timestamp">2h ago</span>
+                                </div>
+                                <div class="mail-subject">Daily Login Reward</div>
+                                <div class="mail-indicators">
+                                    <span class="mail-attachment-icon">📎</span>
+                                    <span class="mail-unread-dot">●</span>
+                                </div>
+                            </div>
+                            <div class="mail-item" data-mail-id="mail-2">
+                                <div class="mail-item-header">
+                                    <span class="mail-from">GuildLeader</span>
+                                    <span class="mail-timestamp">5h ago</span>
+                                </div>
+                                <div class="mail-subject">Raid Schedule</div>
+                            </div>
+                            <div class="mail-item" data-mail-id="mail-3">
+                                <div class="mail-item-header">
+                                    <span class="mail-from">System</span>
+                                    <span class="mail-timestamp">1d ago</span>
+                                </div>
+                                <div class="mail-subject">Achievement Unlocked!</div>
+                                <div class="mail-indicators">
+                                    <span class="mail-attachment-icon">📎</span>
+                                </div>
+                            </div>
+                            <div class="mail-item" data-mail-id="mail-4">
+                                <div class="mail-item-header">
+                                    <span class="mail-from">Wisbe</span>
+                                    <span class="mail-timestamp">2d ago</span>
+                                </div>
+                                <div class="mail-subject">Thanks for the party!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel - Mail Content -->
+                    <div class="mail-right-panel">
+                        <div class="mail-content-container" data-backend-source="selected-mail">
+                            <div class="mail-content-header">
+                                <h3>Daily Login Reward</h3>
+                                <div class="mail-content-meta">
+                                    <span>From: System</span>
+                                    <span>Date: 2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="mail-content-body">
+                                <p>Thank you for logging in today! Here's your daily reward.</p>
+                                <p>Keep playing to unlock more rewards!</p>
+                            </div>
+                            <div class="mail-attachments">
+                                <h4>Attachments</h4>
+                                <div class="attachment-items">
+                                    <div class="attachment-item">
+                                        <span class="attachment-icon">🪙</span>
+                                        <span class="attachment-name">100 Gold</span>
+                                    </div>
+                                    <div class="attachment-item">
+                                        <span class="attachment-icon">🧪</span>
+                                        <span class="attachment-name">Health Potion x5</span>
+                                    </div>
+                                </div>
+                                <button class="btn-primary btn-large" data-backend-action="take-attachments" data-mail-id="mail-1">Take Attachments</button>
+                            </div>
+                            <div class="mail-actions">
+                                <button class="btn-secondary" data-backend-action="reply-mail" data-mail-id="mail-1">Reply</button>
+                                <button class="btn-danger" data-backend-action="delete-mail" data-mail-id="mail-1">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Friends View -->
+            <div id="friends-view" class="view-container">
+                <div class="view-header">
+                    <h2>FRIENDS</h2>
+                </div>
+                <div class="view-content friends-layout">
+                    <div class="friends-container">
+                        <!-- Add Friend Section -->
+                        <div class="add-friend-section">
+                            <h4>Add Friend</h4>
+                            <div class="add-friend-form">
+                                <input type="text" placeholder="Enter player name..." class="friend-input" data-backend-input="friend-name">
+                                <button class="btn-primary" data-backend-action="send-friend-request">Send Request</button>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests -->
+                        <div class="pending-requests-section" data-backend-source="friend-requests">
+                            <h4>Pending Requests (2)</h4>
+                            <div class="request-item">
+                                <span class="request-name">NewPlayer</span>
+                                <span class="request-info">Wizard Lv.12</span>
+                                <div class="request-actions">
+                                    <button class="btn-primary btn-sm" data-backend-action="accept-friend" data-player-id="newplayer">Accept</button>
+                                    <button class="btn-danger btn-sm" data-backend-action="decline-friend" data-player-id="newplayer">Decline</button>
+                                </div>
+                            </div>
+                            <div class="request-item">
+                                <span class="request-name">AnotherPlayer</span>
+                                <span class="request-info">Assassin Lv.25</span>
+                                <div class="request-actions">
+                                    <button class="btn-primary btn-sm" data-backend-action="accept-friend" data-player-id="anotherplayer">Accept</button>
+                                    <button class="btn-danger btn-sm" data-backend-action="decline-friend" data-player-id="anotherplayer">Decline</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Friends List -->
+                        <div class="friends-list-section">
+                            <h4>Friends (4/50)</h4>
+                            <div class="friends-list" data-backend-source="friends-list">
+                                <div class="friend-item online" data-ws-event="friend-status" data-player-id="wisbe">
+                                    <div class="friend-status-indicator online">🟢</div>
+                                    <div class="friend-info">
+                                        <span class="friend-name">Wisbe</span>
+                                        <span class="friend-class">Mystic Lv.43</span>
+                                        <span class="friend-activity">In Combat Zone</span>
+                                    </div>
+                                    <div class="friend-actions">
+                                        <button class="btn-secondary btn-sm" data-backend-action="whisper-friend" data-player-id="wisbe">💬 Whisper</button>
+                                        <button class="btn-primary btn-sm" data-backend-action="invite-to-party" data-player-id="wisbe">👥 Invite</button>
+                                        <button class="btn-danger btn-sm" data-backend-action="remove-friend" data-player-id="wisbe">❌</button>
+                                    </div>
+                                </div>
+                                <div class="friend-item online" data-ws-event="friend-status" data-player-id="darkmage">
+                                    <div class="friend-status-indicator online">🟢</div>
+                                    <div class="friend-info">
+                                        <span class="friend-name">DarkMage</span>
+                                        <span class="friend-class">Summoner Lv.44</span>
+                                        <span class="friend-activity">Crafting</span>
+                                    </div>
+                                    <div class="friend-actions">
+                                        <button class="btn-secondary btn-sm" data-backend-action="whisper-friend" data-player-id="darkmage">💬 Whisper</button>
+                                        <button class="btn-primary btn-sm" data-backend-action="invite-to-party" data-player-id="darkmage">👥 Invite</button>
+                                        <button class="btn-danger btn-sm" data-backend-action="remove-friend" data-player-id="darkmage">❌</button>
+                                    </div>
+                                </div>
+                                <div class="friend-item offline" data-ws-event="friend-status" data-player-id="stealthboi">
+                                    <div class="friend-status-indicator offline">🔴</div>
+                                    <div class="friend-info">
+                                        <span class="friend-name">StealthBoi</span>
+                                        <span class="friend-class">Assassin Lv.45</span>
+                                        <span class="friend-activity">Offline 2h</span>
+                                    </div>
+                                    <div class="friend-actions">
+                                        <button class="btn-secondary btn-sm" disabled>💬 Whisper</button>
+                                        <button class="btn-primary btn-sm" disabled>👥 Invite</button>
+                                        <button class="btn-danger btn-sm" data-backend-action="remove-friend" data-player-id="stealthboi">❌</button>
+                                    </div>
+                                </div>
+                                <div class="friend-item online" data-ws-event="friend-status" data-player-id="tankmaster">
+                                    <div class="friend-status-indicator online">🟢</div>
+                                    <div class="friend-info">
+                                        <span class="friend-name">TankMaster</span>
+                                        <span class="friend-class">Paladin Lv.47</span>
+                                        <span class="friend-activity">In Dungeon</span>
+                                    </div>
+                                    <div class="friend-actions">
+                                        <button class="btn-secondary btn-sm" data-backend-action="whisper-friend" data-player-id="tankmaster">💬 Whisper</button>
+                                        <button class="btn-primary btn-sm" data-backend-action="invite-to-party" data-player-id="tankmaster">👥 Invite</button>
+                                        <button class="btn-danger btn-sm" data-backend-action="remove-friend" data-player-id="tankmaster">❌</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboards View -->
+            <div id="leaderboards-view" class="view-container">
+                <div class="view-header">
+                    <h2>LEADERBOARDS</h2>
+                </div>
+                <div class="view-content leaderboards-layout">
+                    <!-- Category Tabs -->
+                    <div class="leaderboard-tabs">
+                        <button class="leaderboard-tab active" data-leaderboard-tab="overall">Overall Level</button>
+                        <button class="leaderboard-tab" data-leaderboard-tab="combat">Combat Zones</button>
+                        <button class="leaderboard-tab" data-leaderboard-tab="dungeons">Dungeons</button>
+                        <button class="leaderboard-tab" data-leaderboard-tab="raids">Raids</button>
+                        <button class="leaderboard-tab" data-leaderboard-tab="gathering">Gathering</button>
+                        <button class="leaderboard-tab" data-leaderboard-tab="crafting">Crafting</button>
+                    </div>
+
+                    <!-- Leaderboard Table -->
+                    <div class="leaderboard-table-container" data-backend-source="leaderboard" data-category="overall">
+                        <table class="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Player</th>
+                                    <th>Class</th>
+                                    <th>Level</th>
+                                    <th>Guild</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="rank-1">
+                                    <td>1 🥇</td>
+                                    <td>LegendPlayer</td>
+                                    <td>Shadowknight</td>
+                                    <td>99</td>
+                                    <td>&lt;Top Guild&gt;</td>
+                                </tr>
+                                <tr class="rank-2">
+                                    <td>2 🥈</td>
+                                    <td>ProGamer</td>
+                                    <td>Cleric</td>
+                                    <td>98</td>
+                                    <td>&lt;Elite Squad&gt;</td>
+                                </tr>
+                                <tr class="rank-3">
+                                    <td>3 🥉</td>
+                                    <td>EliteWarrior</td>
+                                    <td>Paladin</td>
+                                    <td>97</td>
+                                    <td>&lt;Warriors&gt;</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>MageMaster</td>
+                                    <td>Wizard</td>
+                                    <td>96</td>
+                                    <td>&lt;Mage Tower&gt;</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>HealBot</td>
+                                    <td>Mystic</td>
+                                    <td>95</td>
+                                    <td>&lt;Healers United&gt;</td>
+                                </tr>
+                                <tr class="my-rank" data-backend-source="my-rank">
+                                    <td>247</td>
+                                    <td>Shadowknight (YOU)</td>
+                                    <td>Shadowknight</td>
+                                    <td>45</td>
+                                    <td>&lt;Shadow Legion&gt;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quests View -->
+            <div id="quests-view" class="view-container">
+                <div class="view-header">
+                    <h2>QUESTS</h2>
+                </div>
+                <div class="view-content quests-layout">
+                    <!-- Quest Tabs -->
+                    <div class="quest-tabs">
+                        <button class="quest-tab active" data-quest-tab="active">Active (3)</button>
+                        <button class="quest-tab" data-quest-tab="available">Available (8)</button>
+                        <button class="quest-tab" data-quest-tab="completed">Completed (47)</button>
+                    </div>
+
+                    <!-- Active Quests -->
+                    <div class="quest-tab-content active" data-quest-tab-content="active">
+                        <div class="quests-list" data-backend-source="active-quests">
+                            <div class="quest-item">
+                                <div class="quest-header">
+                                    <h4>Defeat the Shadow Beasts</h4>
+                                    <span class="quest-level">Level 40-45</span>
+                                </div>
+                                <div class="quest-description">
+                                    The Shadow Beasts have been terrorizing the forest. Defeat 20 of them to restore peace.
+                                </div>
+                                <div class="quest-objectives" data-ws-event="quest-progress" data-quest-id="shadow-beasts">
+                                    <div class="quest-objective">
+                                        <span>Shadow Beasts Defeated: 12 / 20</span>
+                                        <div class="quest-progress-bar">
+                                            <div class="quest-progress-fill" style="width: 60%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quest-rewards">
+                                    <h5>Rewards:</h5>
+                                    <span>2,500 XP</span>
+                                    <span>500 Gold</span>
+                                    <span>Rare Item</span>
+                                </div>
+                                <button class="btn-primary" data-backend-action="track-quest" data-quest-id="shadow-beasts">Track Quest</button>
+                            </div>
+
+                            <div class="quest-item">
+                                <div class="quest-header">
+                                    <h4>Gather Ancient Herbs</h4>
+                                    <span class="quest-level">Level 30-40</span>
+                                </div>
+                                <div class="quest-description">
+                                    The alchemist needs Ancient Herbs for a powerful potion. Gather 10 herbs.
+                                </div>
+                                <div class="quest-objectives" data-ws-event="quest-progress" data-quest-id="ancient-herbs">
+                                    <div class="quest-objective">
+                                        <span>Ancient Herbs: 7 / 10</span>
+                                        <div class="quest-progress-bar">
+                                            <div class="quest-progress-fill" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quest-rewards">
+                                    <h5>Rewards:</h5>
+                                    <span>1,500 XP</span>
+                                    <span>Alchemy Recipe</span>
+                                </div>
+                                <button class="btn-primary" data-backend-action="track-quest" data-quest-id="ancient-herbs">Track Quest</button>
+                            </div>
+
+                            <div class="quest-item complete">
+                                <div class="quest-header">
+                                    <h4>Complete Your First Dungeon</h4>
+                                    <span class="quest-level">Level 15+</span>
+                                </div>
+                                <div class="quest-description">
+                                    Form a party and complete Sunken Temple for the first time.
+                                </div>
+                                <div class="quest-objectives completed">
+                                    <div class="quest-objective">
+                                        <span>✅ Sunken Temple Completed: 1 / 1</span>
+                                    </div>
+                                </div>
+                                <div class="quest-rewards">
+                                    <h5>Rewards:</h5>
+                                    <span>5,000 XP</span>
+                                    <span>1,000 Gold</span>
+                                    <span>Epic Weapon</span>
+                                </div>
+                                <button class="btn-primary btn-large" data-backend-action="complete-quest" data-quest-id="first-dungeon">Turn In Quest</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Available Quests -->
+                    <div class="quest-tab-content" data-quest-tab-content="available">
+                        <div class="quests-list" data-backend-source="available-quests">
+                            <div class="quest-item available">
+                                <div class="quest-header">
+                                    <h4>The Mysterious Stranger</h4>
+                                    <span class="quest-level">Level 45-50</span>
+                                </div>
+                                <div class="quest-description">
+                                    A mysterious figure has been spotted in the Shadow Fortress. Investigate.
+                                </div>
+                                <div class="quest-rewards">
+                                    <h5>Rewards:</h5>
+                                    <span>3,000 XP</span>
+                                    <span>Epic Item</span>
+                                </div>
+                                <button class="btn-primary" data-backend-action="accept-quest" data-quest-id="mysterious-stranger">Accept Quest</button>
+                            </div>
+
+                            <div class="quest-item available">
+                                <div class="quest-header">
+                                    <h4>Master Weaponsmith</h4>
+                                    <span class="quest-level">Weaponsmithing 40+</span>
+                                </div>
+                                <div class="quest-description">
+                                    Craft 5 Mithril weapons to prove your mastery.
+                                </div>
+                                <div class="quest-rewards">
+                                    <h5>Rewards:</h5>
+                                    <span>Weaponsmithing XP</span>
+                                    <span>Legendary Recipe</span>
+                                </div>
+                                <button class="btn-primary" data-backend-action="accept-quest" data-quest-id="master-weaponsmith">Accept Quest</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Completed Quests -->
+                    <div class="quest-tab-content" data-quest-tab-content="completed">
+                        <div class="quests-list" data-backend-source="completed-quests">
+                            <div class="quest-item completed">
+                                <div class="quest-header">
+                                    <h4>Welcome to the Game</h4>
+                                    <span class="quest-level">Level 1</span>
+                                </div>
+                                <div class="quest-description">
+                                    Complete the tutorial and reach level 5.
+                                </div>
+                                <span class="completed-badge">✅ Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements View -->
+            <div id="achievements-view" class="view-container">
+                <div class="view-header">
+                    <h2>ACHIEVEMENTS</h2>
+                    <div class="achievement-points">Achievement Points: 1,250</div>
+                </div>
+                <div class="view-content achievements-layout">
+                    <!-- Category Filters -->
+                    <div class="achievement-categories">
+                        <button class="achievement-category active" data-achievement-category="all">All</button>
+                        <button class="achievement-category" data-achievement-category="combat">Combat</button>
+                        <button class="achievement-category" data-achievement-category="dungeons">Dungeons</button>
+                        <button class="achievement-category" data-achievement-category="gathering">Gathering</button>
+                        <button class="achievement-category" data-achievement-category="crafting">Crafting</button>
+                        <button class="achievement-category" data-achievement-category="social">Social</button>
+                    </div>
+
+                    <!-- Achievements List -->
+                    <div class="achievements-container" data-backend-source="achievements">
+                        <!-- Unlocked Achievement -->
+                        <div class="achievement-item unlocked">
+                            <div class="achievement-icon">🏆</div>
+                            <div class="achievement-info">
+                                <h4>Level 45 Reached</h4>
+                                <p class="achievement-description">Reach character level 45</p>
+                                <div class="achievement-progress completed">
+                                    <span>45 / 45</span>
+                                    <div class="achievement-progress-bar">
+                                        <div class="achievement-progress-fill" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div class="achievement-reward">
+                                    <span class="achievement-points-badge">+50 Points</span>
+                                    <span class="achievement-date">Unlocked: 2 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- In Progress Achievement -->
+                        <div class="achievement-item in-progress" data-ws-event="achievement-progress" data-achievement-id="dungeon-master">
+                            <div class="achievement-icon">🏰</div>
+                            <div class="achievement-info">
+                                <h4>Dungeon Master</h4>
+                                <p class="achievement-description">Complete 50 dungeons</p>
+                                <div class="achievement-progress">
+                                    <span>23 / 50</span>
+                                    <div class="achievement-progress-bar">
+                                        <div class="achievement-progress-fill" style="width: 46%"></div>
+                                    </div>
+                                </div>
+                                <div class="achievement-reward">
+                                    <span class="achievement-points-badge">+100 Points</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Locked Achievement -->
+                        <div class="achievement-item locked">
+                            <div class="achievement-icon">🔒</div>
+                            <div class="achievement-info">
+                                <h4>Legendary Crafter</h4>
+                                <p class="achievement-description">Craft a legendary item</p>
+                                <div class="achievement-progress">
+                                    <span>0 / 1</span>
+                                    <div class="achievement-progress-bar">
+                                        <div class="achievement-progress-fill" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="achievement-reward">
+                                    <span class="achievement-points-badge">+200 Points</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item unlocked">
+                            <div class="achievement-icon">⚔️</div>
+                            <div class="achievement-info">
+                                <h4>First Blood</h4>
+                                <p class="achievement-description">Defeat your first enemy</p>
+                                <div class="achievement-progress completed">
+                                    <span>1 / 1</span>
+                                    <div class="achievement-progress-bar">
+                                        <div class="achievement-progress-fill" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div class="achievement-reward">
+                                    <span class="achievement-points-badge">+10 Points</span>
+                                    <span class="achievement-date">Unlocked: 30 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item in-progress" data-ws-event="achievement-progress" data-achievement-id="social-butterfly">
+                            <div class="achievement-icon">👥</div>
+                            <div class="achievement-info">
+                                <h4>Social Butterfly</h4>
+                                <p class="achievement-description">Add 20 friends</p>
+                                <div class="achievement-progress">
+                                    <span>4 / 20</span>
+                                    <div class="achievement-progress-bar">
+                                        <div class="achievement-progress-fill" style="width: 20%"></div>
+                                    </div>
+                                </div>
+                                <div class="achievement-reward">
+                                    <span class="achievement-points-badge">+50 Points</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achievement-item locked">
+                            <div class="achievement-icon">🔒</div>
+                            <div class="achievement-info">
+                                <h4>Max Level</h4>
+                                <p class="achievement-description">Reach level 99</p>
+                                <div class="achievement-progress">
+                                    <span>45 / 99</span>
+                                    <div class="achievement-progress-bar">
+                                        <div class="achievement-progress-fill" style="width: 45%"></div>
+                                    </div>
+                                </div>
+                                <div class="achievement-reward">
+                                    <span class="achievement-points-badge">+500 Points</span>
                                 </div>
                             </div>
                         </div>

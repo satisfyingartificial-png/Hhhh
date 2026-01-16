@@ -63,7 +63,15 @@ class GameUI {
             'alchemy': 'alchemy-view',
             'tailoring': 'tailoring-view',
             'cooking': 'cooking-view',
-            // Add more view mappings as needed
+            // Social Views
+            'guild': 'guild-view',
+            'trading-post': 'trading-post-view',
+            'mail': 'mail-view',
+            'friends': 'friends-view',
+            'leaderboards': 'leaderboards-view',
+            // System Views
+            'quests': 'quests-view',
+            'achievements': 'achievements-view',
         };
 
         const viewId = viewMap[viewName] || 'combat-view';
